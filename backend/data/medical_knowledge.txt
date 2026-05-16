@@ -1,0 +1,117 @@
+ENTRY: Common Cold
+Symptoms: runny nose, sneezing, mild sore throat, low-grade fever (below 38.5C), nasal congestion, mild cough
+Duration: typically 7-10 days
+Severity: mild
+OTC Treatment: paracetamol 500mg for fever, cetirizine for runny nose, throat lozenges
+Home Remedies: rest, warm fluids, steam inhalation, honey-ginger tea
+When to see doctor: fever above 39C, symptoms beyond 10 days, difficulty breathing
+
+ENTRY: Influenza (Flu)
+Symptoms: sudden high fever (38.5-40C), body aches, severe fatigue, headache, dry cough, chills, loss of appetite
+Duration: 5-7 days for fever; fatigue may persist 2 weeks
+Severity: moderate
+OTC Treatment: paracetamol 500mg-1g every 6 hours, plenty of oral fluids, ORS if dehydrated
+Home Remedies: bed rest, warm broths, steam inhalation, cool compress for fever
+When to see doctor: fever above 40C, chest pain, difficulty breathing, confusion, persistent vomiting
+
+ENTRY: Fever
+Symptoms: body temperature above 38C, sweating, chills, headache, muscle aches, loss of appetite, dehydration
+Duration: varies by cause; viral fevers typically 3-5 days
+Severity: mild to moderate depending on temperature
+OTC Treatment: paracetamol 500mg-1g every 6 hours (max 4g/day), ibuprofen 400mg if no stomach issues
+Home Remedies: cool compress on forehead, light clothing, adequate fluid intake, rest
+Warning: seek emergency care for fever above 40C, fever with stiff neck, difficulty breathing, or severe rash
+
+ENTRY: Headache (Tension Type)
+Symptoms: dull pressure-like pain on both sides of head, tightness around forehead or back of head/neck, mild to moderate intensity
+Duration: 30 minutes to several hours
+Severity: mild to moderate
+OTC Treatment: paracetamol 500mg-1g, ibuprofen 400mg, aspirin (adults only)
+Home Remedies: rest in quiet dark room, cold or warm compress on neck/forehead, hydration, gentle neck stretches
+When to see doctor: severe sudden headache, headache with fever and stiff neck, vision changes, weakness or numbness
+
+ENTRY: Migraine
+Symptoms: severe throbbing pain usually on one side, nausea, vomiting, sensitivity to light and sound, aura (visual disturbances) in some cases
+Duration: 4-72 hours
+Severity: moderate to severe
+OTC Treatment: ibuprofen 400-600mg or paracetamol at onset, lie down in dark quiet room
+Home Remedies: cold pack on head, rest, avoid triggers (bright light, strong smells, stress)
+Referral: Neurology department for recurring migraines; prescription triptans may be needed
+
+ENTRY: Chest Pain (Emergency)
+Symptoms: pressure or squeezing in chest, pain radiating to left arm/jaw/back, shortness of breath, sweating, nausea, dizziness
+Severity: EMERGENCY — may indicate heart attack or pulmonary embolism
+Action: CALL 108 IMMEDIATELY. Do not drive. Chew aspirin 325mg if available and not allergic.
+Home remedies: NONE — this is an emergency
+Referral: Emergency department / Cardiology
+
+ENTRY: Stomach Pain and Nausea
+Symptoms: cramping or dull abdominal pain, nausea, vomiting, bloating, gas, diarrhea or constipation
+Duration: acute episodes 1-3 days
+Severity: mild to moderate
+OTC Treatment: antacids (gelusil, digene) for acidity, domperidone 10mg for nausea, ORS for dehydration
+Home Remedies: bland diet (BRAT: bananas, rice, applesauce, toast), ginger tea, warm water with lemon, avoid spicy/oily food
+When to see doctor: severe pain, blood in stool/vomit, fever above 38.5C, pain lasting more than 3 days
+
+ENTRY: Back Pain
+Symptoms: dull aching or sharp pain in lower back, stiffness, limited range of motion, pain radiating to legs (sciatica)
+Duration: acute: days to weeks; chronic: more than 12 weeks
+Severity: mild to severe
+OTC Treatment: ibuprofen 400mg three times daily with food, paracetamol for mild pain, muscle relaxants if prescribed
+Home Remedies: hot or cold compress, gentle stretching, keep moving (avoid prolonged bed rest), ergonomic posture
+When to see doctor: pain with numbness/tingling in legs, bladder/bowel dysfunction, pain after injury, fever with back pain
+
+ENTRY: Allergic Reaction
+Symptoms: skin rash (hives), itching, runny nose, watery eyes, sneezing, swelling of lips/face in mild cases
+Severe reaction: swelling of throat, difficulty breathing, drop in blood pressure (anaphylaxis — EMERGENCY)
+OTC Treatment: cetirizine 10mg or loratadine 10mg for mild symptoms, calamine lotion for skin rash
+When to see doctor: any throat swelling, difficulty breathing, dizziness — EMERGENCY, use epinephrine if available
+Avoidance: identify and avoid trigger (food, pollen, medication, insect sting)
+
+ENTRY: Diabetes Symptoms
+Symptoms: excessive thirst, frequent urination, unexplained weight loss, blurred vision, slow-healing wounds, fatigue, increased hunger
+Type: Type 1 (childhood onset) or Type 2 (adult, lifestyle-related)
+Severity: moderate to severe — requires medical management
+Action: fasting blood glucose test, HbA1c test
+OTC: glucose monitoring; no OTC cure
+Home Remedies: low-sugar diet, regular exercise, weight management, avoid processed carbs
+Referral: General Medicine or Endocrinology for diagnosis and management plan
+
+ENTRY: Hypertension (High Blood Pressure)
+Symptoms: often asymptomatic; may present with headache, dizziness, blurred vision, chest pain, shortness of breath
+Risk factors: obesity, salt intake, stress, family history, sedentary lifestyle
+Normal BP: less than 120/80 mmHg; Hypertension: above 140/90 mmHg
+Severity: moderate to severe — chronic condition requiring management
+Action: regular BP monitoring, lifestyle changes
+Home Remedies: DASH diet (low sodium, high potassium), exercise 30 min/day, reduce stress, no smoking or alcohol
+Referral: General Medicine or Cardiology for medication if BP remains elevated
+
+ENTRY: Diarrhea and Dehydration
+Symptoms: loose watery stools 3 or more times/day, stomach cramps, nausea, urgent bowel movement, dehydration signs (dry mouth, dark urine)
+Duration: acute diarrhea resolves within 2-3 days
+OTC Treatment: ORS (oral rehydration solution) — essential; loperamide 2mg for adults if no blood in stool; probiotics
+Home Remedies: BRAT diet, boiled rice water, banana, coconut water, avoid dairy and spicy food
+When to see doctor: blood in stool, fever above 39C, dehydration signs in children/elderly, diarrhea beyond 3 days
+
+ENTRY: Sore Throat and Tonsillitis
+Symptoms: pain or scratchy feeling in throat, pain on swallowing, red/swollen tonsils, white patches (bacterial), mild fever, swollen lymph nodes
+Duration: viral: 3-7 days; bacterial (strep): needs antibiotics
+OTC Treatment: paracetamol or ibuprofen for pain, throat lozenges, benzydamine gargle
+Home Remedies: warm salt water gargle, honey-lemon tea, cold drinks/ice cream for soothing
+When to see doctor: high fever, difficulty swallowing/breathing, abscess, symptoms beyond 7 days
+
+ENTRY: Urinary Tract Infection (UTI)
+Symptoms: burning or pain during urination, frequent urge to urinate, cloudy/dark or strong-smelling urine, lower abdominal pain, mild fever
+Affected: more common in women
+OTC: cranberry supplements (prevention); phenazopyridine for pain relief only — NOT a cure
+Home Remedies: drink at least 2-3 litres water/day, urinate frequently, avoid holding urine, wipe front to back
+Referral: General Medicine — requires urine culture and prescription antibiotics; do NOT self-medicate antibiotics
+
+ENTRY: Anxiety and Stress Symptoms
+Symptoms: excessive worry, restlessness, difficulty concentrating, irritability, muscle tension, sleep disturbances, palpitations, shortness of breath
+Duration: varies; can be episodic or chronic
+Severity: mild to severe — impacts quality of life
+OTC: no OTC medication recommended without diagnosis
+Home Remedies: deep breathing exercises, regular exercise, adequate sleep (7-8 hours), limit caffeine and alcohol, mindfulness meditation
+When to see doctor: symptoms lasting more than 2 weeks, interference with daily life, panic attacks, thoughts of self-harm
+Referral: General Medicine initially; may refer to Psychiatry or Psychology

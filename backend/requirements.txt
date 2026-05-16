@@ -1,0 +1,10 @@
+django>=4.2
+djangorestframework
+django-cors-headers
+psycopg2-binary
+anthropic
+chromadb
+python-dotenv
+gunicorn
+whitenoise
+dj-database-url

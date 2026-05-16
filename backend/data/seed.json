@@ -1,0 +1,201 @@
+[
+  {
+    "model": "doctors.department",
+    "pk": 1,
+    "fields": {
+      "name": "General Medicine",
+      "description": "Primary care and general health consultations for common illnesses and chronic conditions."
+    }
+  },
+  {
+    "model": "doctors.department",
+    "pk": 2,
+    "fields": {
+      "name": "Cardiology",
+      "description": "Diagnosis and treatment of heart and cardiovascular system disorders."
+    }
+  },
+  {
+    "model": "doctors.department",
+    "pk": 3,
+    "fields": {
+      "name": "Neurology",
+      "description": "Treatment of disorders of the nervous system including brain, spinal cord and nerves."
+    }
+  },
+
+  {
+    "model": "doctors.doctor",
+    "pk": 1,
+    "fields": {
+      "name": "Rajesh Kumar",
+      "department": 1,
+      "qualification": "MBBS, MD (General Medicine)",
+      "available_days": "Monday,Tuesday,Wednesday,Thursday,Friday"
+    }
+  },
+  {
+    "model": "doctors.doctor",
+    "pk": 2,
+    "fields": {
+      "name": "Priya Sharma",
+      "department": 1,
+      "qualification": "MBBS, MD (General Medicine)",
+      "available_days": "Monday,Wednesday,Friday"
+    }
+  },
+  {
+    "model": "doctors.doctor",
+    "pk": 3,
+    "fields": {
+      "name": "Arjun Mehta",
+      "department": 2,
+      "qualification": "MBBS, MD, DM (Cardiology)",
+      "available_days": "Tuesday,Thursday,Saturday"
+    }
+  },
+  {
+    "model": "doctors.doctor",
+    "pk": 4,
+    "fields": {
+      "name": "Sunita Rao",
+      "department": 2,
+      "qualification": "MBBS, MD, DM (Cardiology)",
+      "available_days": "Monday,Wednesday,Friday"
+    }
+  },
+  {
+    "model": "doctors.doctor",
+    "pk": 5,
+    "fields": {
+      "name": "Vikram Nair",
+      "department": 3,
+      "qualification": "MBBS, MD, DM (Neurology)",
+      "available_days": "Tuesday,Thursday,Saturday"
+    }
+  },
+
+  {
+    "model": "doctors.slot",
+    "pk": 1,
+    "fields": {
+      "doctor": 3,
+      "date": "2026-05-16",
+      "time": "10:00:00",
+      "is_booked": false
+    }
+  },
+  {
+    "model": "doctors.slot",
+    "pk": 2,
+    "fields": {
+      "doctor": 1,
+      "date": "2026-05-17",
+      "time": "09:00:00",
+      "is_booked": false
+    }
+  },
+  {
+    "model": "doctors.slot",
+    "pk": 3,
+    "fields": {
+      "doctor": 5,
+      "date": "2026-05-17",
+      "time": "14:00:00",
+      "is_booked": false
+    }
+  },
+  {
+    "model": "doctors.slot",
+    "pk": 4,
+    "fields": {
+      "doctor": 2,
+      "date": "2026-05-18",
+      "time": "10:00:00",
+      "is_booked": false
+    }
+  },
+  {
+    "model": "doctors.slot",
+    "pk": 5,
+    "fields": {
+      "doctor": 4,
+      "date": "2026-05-18",
+      "time": "14:00:00",
+      "is_booked": false
+    }
+  },
+  {
+    "model": "doctors.slot",
+    "pk": 6,
+    "fields": {
+      "doctor": 1,
+      "date": "2026-05-19",
+      "time": "10:00:00",
+      "is_booked": false
+    }
+  },
+  {
+    "model": "doctors.slot",
+    "pk": 7,
+    "fields": {
+      "doctor": 3,
+      "date": "2026-05-19",
+      "time": "11:00:00",
+      "is_booked": false
+    }
+  },
+  {
+    "model": "doctors.slot",
+    "pk": 8,
+    "fields": {
+      "doctor": 5,
+      "date": "2026-05-20",
+      "time": "10:00:00",
+      "is_booked": false
+    }
+  },
+  {
+    "model": "doctors.slot",
+    "pk": 9,
+    "fields": {
+      "doctor": 2,
+      "date": "2026-05-21",
+      "time": "15:00:00",
+      "is_booked": false
+    }
+  },
+  {
+    "model": "doctors.slot",
+    "pk": 10,
+    "fields": {
+      "doctor": 4,
+      "date": "2026-05-22",
+      "time": "09:00:00",
+      "is_booked": false
+    }
+  },
+
+  {
+    "model": "patients.patient",
+    "pk": 1,
+    "fields": {
+      "name": "Priya Nair",
+      "age": 28,
+      "gender": "Female",
+      "mobile": "9876543210",
+      "created_at": "2026-05-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "patients.patient",
+    "pk": 2,
+    "fields": {
+      "name": "Ravi Kumar",
+      "age": 45,
+      "gender": "Male",
+      "mobile": "9876543211",
+      "created_at": "2026-05-01T10:00:00Z"
+    }
+  }
+]
