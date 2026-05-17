@@ -328,6 +328,7 @@ export default function ChatWindow({ onClose, onBotMessage }) {
     const text = input.trim()
     if (!text || !token || loading) return
     setInput('')
+    userClickedReply.current = false   // manual send — always show buttons on response
     callSend(token, text)
   }
 
