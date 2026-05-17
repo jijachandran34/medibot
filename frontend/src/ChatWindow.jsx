@@ -395,32 +395,47 @@ export default function ChatWindow({ onClose, onBotMessage }) {
       </div>
 
       {/* Quick replies */}
-      {quickReplies.length > 0 && (
-        <div style={{
-          padding: '8px 12px',
-          borderTop: '1px solid #eee',
-          display: 'flex', gap: 8,
-          overflowX: 'auto', flexShrink: 0,
-        }}>
-          {quickReplies.map(qr => {
-            const isEmergency = qr.startsWith('🚨')
-            const isSafe      = qr.startsWith('✅')
-            return (
-              <button
-                key={qr}
-                className="quick-reply-btn"
-                disabled={loading}
-                onClick={() => handleQuickReply(qr)}
-                style={
-                  isEmergency ? { background: '#dc2626', color: '#fff', borderColor: '#dc2626' } :
-                  isSafe      ? { background: '#16a34a', color: '#fff', borderColor: '#16a34a' } :
-                  undefined
-                }
-              >{qr}</button>
-            )
-          })}
-        </div>
-      )}
+      {quickReplies.length > 0 && (() => {
+        const slotReplies   = quickReplies.filter(qr => qr.startsWith('Dr.'))
+        const normalReplies = quickReplies.filter(qr => !qr.startsWith('Dr.'))
+        return (
+          <div style={{ borderTop: '1px solid #eee', flexShrink: 0 }}>
+            {slotReplies.length > 0 && (
+              <div style={{ padding: '8px 12px' }}>
+                {slotReplies.map(qr => (
+                  <button
+                    key={qr}
+                    className="slot-reply-btn"
+                    disabled={loading}
+                    onClick={() => handleQuickReply(qr)}
+                  >{qr}</button>
+                ))}
+              </div>
+            )}
+            {normalReplies.length > 0 && (
+              <div style={{ padding: '8px 12px', display: 'flex', gap: 8, overflowX: 'auto' }}>
+                {normalReplies.map(qr => {
+                  const isEmergency = qr.startsWith('🚨')
+                  const isSafe      = qr.startsWith('✅')
+                  return (
+                    <button
+                      key={qr}
+                      className="quick-reply-btn"
+                      disabled={loading}
+                      onClick={() => handleQuickReply(qr)}
+                      style={
+                        isEmergency ? { background: '#dc2626', color: '#fff', borderColor: '#dc2626' } :
+                        isSafe      ? { background: '#16a34a', color: '#fff', borderColor: '#16a34a' } :
+                        undefined
+                      }
+                    >{qr}</button>
+                  )
+                })}
+              </div>
+            )}
+          </div>
+        )
+      })()}
 
       {/* Input */}
       <div style={{ padding: '10px 12px', borderTop: '1px solid #eee', display: 'flex', gap: 8, flexShrink: 0 }}>

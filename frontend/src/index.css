@@ -79,6 +79,27 @@ body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
   padding: 4px 0;
 }
 
+/* ── Slot reply buttons (vertical stack) ─────────────── */
+.slot-reply-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 14px;
+  margin: 4px 0;
+  background: #f0f7ff;
+  border: 1px solid #0066CC;
+  border-radius: 8px;
+  color: #0066CC;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.slot-reply-btn:hover:not(:disabled) {
+  background: #0066CC;
+  color: #fff;
+}
+.slot-reply-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
 /* ── Start over link ──────────────────────────────────── */
 .start-over-link {
   display: block;
