@@ -77,3 +77,19 @@ body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
   font-style: italic;
   padding: 4px 0;
 }
+
+/* ── Start over link ──────────────────────────────────── */
+.start-over-link {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 0.78rem;
+  color: #888;
+  text-decoration: underline;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 6px 0 8px 0;
+  flex-shrink: 0;
+}
+.start-over-link:hover { color: #0066CC; }
