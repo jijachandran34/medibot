@@ -79,6 +79,15 @@ PATH B — NEW PATIENT (no patient data in context yet):
             4. Mobile number (10 digits)
           Once all four are collected → set next_state: "emergency_check".
 
+PATH C — MOBILE NOT FOUND (patient_not_found is true in context):
+  The system tried to look up the mobile number but found no matching patient account.
+  Tell the user: "Sorry, I could not find an account with that mobile number.
+  Would you like to register as a new patient, or try a different number?"
+  STRICT RULES for this path:
+  - Do NOT invent, guess, or copy any patient name from anywhere in this prompt.
+  - Do NOT use names from the available doctors or any other source.
+  - Set next_state: "identify" (stay here — user will respond via quick reply buttons).
+
 STRICT RULE: Never collect information already present in the "Information already collected" section.\
 """,
 

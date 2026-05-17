@@ -211,6 +211,13 @@ def _get_manage_appointment_quick_replies(conversation):
     return ["📅 Modify existing appointment", "➕ Book new appointment"]
 
 
+def _get_identify_quick_replies(conversation):
+    """Return context-aware quick replies for the identify state."""
+    if conversation.context.get('patient_not_found'):
+        return ["✅ Yes, register as new patient", "🔄 Try a different number"]
+    return ["I'm a new patient", "I'm an existing patient"]
+
+
 def _lookup_patient_by_mobile(message_text):
     """Extract a 10-digit mobile number from message_text and return matching Patient or None."""
     import re
@@ -312,6 +319,7 @@ def handle_message(conversation, user_message_text):
 
     # Existing patient lookup: if still identifying and user gives a mobile, pre-fill context
     if conversation.state == 'identify' and 'patient_name' not in conversation.context:
+        has_mobile = bool(re.search(r'\b(\d{10})\b', user_message_text))
         patient = _lookup_patient_by_mobile(user_message_text)
         if patient:
             conversation.context.update({
@@ -321,8 +329,17 @@ def handle_message(conversation, user_message_text):
                 'patient_gender': patient.gender,
                 'patient_mobile': patient.mobile,
             })
+            conversation.context.pop('patient_not_found', None)
             conversation.save(update_fields=['context'])
             logger.info("Existing patient found: %s (%s)", patient.name, patient.mobile)
+        elif has_mobile:
+            conversation.context['patient_not_found'] = True
+            conversation.save(update_fields=['context'])
+            logger.info("Mobile not found in Patient table.")
+        elif conversation.context.get('patient_not_found'):
+            # User responded to the not-found prompt (no mobile in message) — clear the flag
+            conversation.context.pop('patient_not_found', None)
+            conversation.save(update_fields=['context'])
 
     # Build context to inject into system prompt
     if conversation.state in ('symptoms', 'triage'):
@@ -423,6 +440,8 @@ def handle_message(conversation, user_message_text):
         quick_replies = _get_manage_appointment_quick_replies(conversation)
     elif next_state == 'booking':
         quick_replies = _get_booking_quick_replies()
+    elif next_state == 'identify':
+        quick_replies = _get_identify_quick_replies(conversation)
     else:
         quick_replies = QUICK_REPLIES.get(next_state, [])
 
