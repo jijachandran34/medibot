@@ -9,6 +9,7 @@ class Conversation(models.Model):
         ('symptoms', 'Symptom Collection'),
         ('triage', 'Triage & Guidance'),
         ('booking', 'Appointment Booking'),
+        ('manage_appointment', 'Manage Appointment'),
         ('done', 'Done'),
     ]
 
@@ -40,10 +41,17 @@ class Message(models.Model):
 
 
 class Appointment(models.Model):
+    STATUS_CHOICES = [
+        ('active', 'Active'),
+        ('cancelled', 'Cancelled'),
+        ('rescheduled', 'Rescheduled'),
+    ]
+
     patient = models.ForeignKey('patients.Patient', on_delete=models.CASCADE)
     doctor = models.ForeignKey('doctors.Doctor', on_delete=models.CASCADE)
     slot = models.ForeignKey('doctors.Slot', on_delete=models.CASCADE)
     reason = models.TextField(blank=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='active')
     booked_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

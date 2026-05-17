@@ -220,18 +220,19 @@ export default function ChatWindow({ onClose, onBotMessage }) {
       }
       setMessages(prev => [...prev, botMsg])
       // BUG 1 fix: suppress new quick replies if user already clicked one this turn,
-      // unless the state just changed (new stage = new set of buttons is appropriate)
+      // unless the state/sub_state just changed (new stage = new set of buttons is appropriate)
+      const stateKey = `${res.state}|${res.sub_state || ''}`
       if (userClickedReply.current) {
-        if (res.state !== prevStateRef.current) {
+        if (stateKey !== prevStateRef.current) {
           userClickedReply.current = false          // state changed — reset flag, show new buttons
           setQuickReplies(res.quick_replies || [])
         } else {
-          setQuickReplies([])                       // same state — keep buttons gone
+          setQuickReplies([])                       // same state+sub_state — keep buttons gone
         }
       } else {
         setQuickReplies(res.quick_replies || [])
       }
-      prevStateRef.current = res.state
+      prevStateRef.current = stateKey
       setQrClickCount(0)                          // reset click counter for the new turn
       if (onBotMessage) onBotMessage()
     } catch {

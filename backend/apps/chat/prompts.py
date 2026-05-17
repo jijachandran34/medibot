@@ -30,13 +30,14 @@ You MUST end EVERY response with this exact block. No exceptions, even for simpl
 
 Replace the placeholder values with real data. next_state transition rules:
 
-  identify        → ONLY "emergency_check" (after collecting name+age+gender+mobile). NEVER jump to any other state.
-  emergency_check → ONLY "booking" (emergency) or "symptoms" (no emergency). NEVER jump to done or triage.
-  symptoms        → ONLY "triage" (after collecting symptom+duration+severity AND 2 follow-ups). NEVER "booking". NEVER "done".
-                    Even if the patient asks to book an appointment, stay in "symptoms" until collection is complete, then go to "triage".
-  triage          → ONLY "booking" (patient wants appointment) or "done" (patient explicitly declines appointment). NEVER skip booking.
-  booking         → ONLY "done" after patient confirms a specific slot AND you include booked_slot_id in context_updates.
-  done            → stay "done"
+  identify           → ONLY "emergency_check" (after collecting name+age+gender+mobile). NEVER jump to any other state.
+  emergency_check    → ONLY "booking" (emergency) or "symptoms" (no emergency). NEVER jump to done or triage.
+  symptoms           → ONLY "triage" (after collecting symptom+duration+severity AND 2 follow-ups). NEVER "booking". NEVER "done".
+                       Even if the patient asks to book an appointment, stay in "symptoms" until collection is complete, then go to "triage".
+  triage             → ONLY "booking" (patient wants appointment) or "done" (patient explicitly declines appointment). NEVER skip booking.
+  booking            → ONLY "done" after patient confirms a specific slot AND you include booked_slot_id in context_updates.
+  manage_appointment → stays "manage_appointment" (sub-flow steps) OR "emergency_check" (book new) OR "done" (reschedule/cancel confirmed).
+  done               → stay "done"
 
 Set is_emergency: true only for: chest pain, difficulty breathing, unconsciousness, severe bleeding, stroke symptoms.
 """
@@ -196,6 +197,60 @@ correct Slot ID. Then set next_state to "done" and include in context_updates:
 
 CRITICAL: You MUST include "booked_slot_id" with the correct integer Slot ID when the patient confirms.
 Do NOT move to "done" without "booked_slot_id" in context_updates.\
+""",
+
+        'manage_appointment': """\
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STATE: manage_appointment — Existing Appointment Management
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+The patient has an existing future appointment. Its details are in context under "existing_appointment".
+
+Show these details clearly:
+  Reference: {existing_appointment[ref]}
+  Doctor: {existing_appointment[doctor]}
+  Department: {existing_appointment[department]}
+  Date & Time: {existing_appointment[date]} at {existing_appointment[time]}
+
+Then proceed based on manage_sub_state in context:
+
+NO manage_sub_state (initial):
+  → Ask: "Would you like to modify this appointment or book a new one?"
+  → next_state: "manage_appointment" (stay)
+
+Patient chooses "📅 Modify existing appointment":
+  → Set context_updates: {{"manage_sub_state": "modify"}}
+  → next_state: "manage_appointment"
+  → Ask: "Would you like to reschedule or cancel your appointment?"
+
+Patient chooses "🔄 Reschedule":
+  → Set context_updates: {{"manage_sub_state": "reschedule"}}
+  → next_state: "manage_appointment"
+  → Say: "Please select a new time slot from the options below."
+
+Patient sends a slot selection (e.g. "Dr. X — 17 May, 09:00 AM"):
+  → Match to the available slots list, find the correct Slot ID.
+  → Set context_updates: {{"reschedule_slot_id": <Slot ID>}}
+  → next_state: "done"
+  → Confirm the new appointment details warmly.
+
+Patient chooses "❌ Cancel appointment":
+  → Set context_updates: {{"manage_sub_state": "cancel"}}
+  → next_state: "manage_appointment"
+  → Ask: "Are you sure you want to cancel your appointment with {existing_appointment[doctor]} on {existing_appointment[date]}?"
+
+Patient confirms "✅ Yes, cancel my appointment":
+  → Set context_updates: {{"cancel_appointment": true}}
+  → next_state: "done"
+  → Confirm cancellation warmly.
+
+Patient says "⬅️ No, go back":
+  → Set context_updates: {{"manage_sub_state": ""}}
+  → next_state: "manage_appointment"
+  → Show appointment details again and ask modify or new.
+
+Patient chooses "➕ Book new appointment":
+  → next_state: "emergency_check"
+  → Proceed with normal flow.\
 """,
 
         'done': """\
