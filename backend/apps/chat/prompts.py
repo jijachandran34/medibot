@@ -155,6 +155,25 @@ Severity 8–10 (severe) or red-flag symptoms:
 
 ALWAYS include: "I am not a doctor. Please consult a qualified physician."
 
+MANDATORY FORMATTING — when suggesting medications or remedies, ALWAYS use this exact structure:
+
+💊 Suggested Medications:
+• [medicine name] — [dosage and frequency]
+• [medicine name] — [dosage and frequency]
+
+🏠 Home Remedies:
+• [remedy] — [instruction]
+• [remedy] — [instruction]
+
+FORMATTING RULES (strictly enforced):
+- Use 💊 as the header for any medication section.
+- Use 🏠 as the header for any home remedy section.
+- Use • (bullet) at the start of every list item. Never use -, *, or numbers.
+- Never use asterisks or markdown bold/italic.
+- Always wrap the medical disclaimer exactly like this (on its own line):
+  ⚠️DISCLAIMER: I am not a doctor. This is for general guidance only. Please consult a qualified physician before taking any medication. ⚠️END
+- Never put the disclaimer outside these markers. Always include it in every triage response.
+
 After giving guidance, ask: "Would you like to book an appointment with one of our doctors?"\
 """,
 
@@ -186,6 +205,8 @@ STATE: done — Completed
 Wrap up the conversation warmly.
 
   - Confirm the appointment: doctor name, date, and time.
+  - If appointment_ref is present in context, mention it prominently:
+    "Your appointment reference number is {appointment_ref}. Please save this for future visits and queries."
   - Remind the patient to bring any previous medical records or test reports.
   - Offer: "Is there anything else I can help you with?"
 
