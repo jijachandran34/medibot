@@ -181,6 +181,12 @@ def _create_appointment_if_booked(conversation, context_updates):
         appt.pk, patient.name, slot.doctor.name, slot.date, slot.time,
     )
 
+    appt_ref = f"KH{appt.pk:05d}"
+    conversation.context['appointment_ref'] = appt_ref
+    conversation.save(update_fields=['context'])
+    logger.info("Appointment ref: %s", appt_ref)
+    return appt_ref
+
 
 def handle_message(conversation, user_message_text):
     # Persist the incoming user message so it is part of the history sent to Claude.
@@ -251,8 +257,9 @@ def handle_message(conversation, user_message_text):
     conversation.save(update_fields=['state', 'context'])
 
     # Create appointment if booking just confirmed
+    appt_ref = None
     if isinstance(context_updates, dict) and 'booked_slot_id' in context_updates:
-        _create_appointment_if_booked(conversation, context_updates)
+        appt_ref = _create_appointment_if_booked(conversation, context_updates)
 
     # Resolve emergency doctor when emergency is confirmed and moving to booking
     emergency_doctor = None
@@ -261,6 +268,8 @@ def handle_message(conversation, user_message_text):
 
     # Persist clean assistant reply
     clean_reply = _clean_response(raw_reply)
+    if appt_ref:
+        clean_reply += f"\n\n📋 Your appointment reference number is: **{appt_ref}**\nPlease save this for future reference."
     Message.objects.create(
         conversation=conversation, role='assistant', content=clean_reply
     )

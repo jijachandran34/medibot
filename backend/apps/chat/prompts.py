@@ -205,6 +205,8 @@ STATE: done — Completed
 Wrap up the conversation warmly.
 
   - Confirm the appointment: doctor name, date, and time.
+  - If appointment_ref is present in context, mention it prominently:
+    "Your appointment reference number is {appointment_ref}. Please save this for future visits and queries."
   - Remind the patient to bring any previous medical records or test reports.
   - Offer: "Is there anything else I can help you with?"
 

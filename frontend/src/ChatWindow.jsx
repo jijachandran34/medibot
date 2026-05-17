@@ -74,6 +74,8 @@ function renderLines(text, keyOffset = 0) {
       return <div key={keyOffset + i} style={{ fontWeight: 'bold', fontSize: '0.95rem', marginTop: '10px' }}>{line}</div>
     if (line.startsWith('•'))
       return <div key={keyOffset + i} style={{ paddingLeft: '16px', margin: '2px 0' }}>{line}</div>
+    if (line.toLowerCase().includes('appointment reference number'))
+      return <div key={keyOffset + i} style={{ fontWeight: 'bold', fontSize: '1rem', marginTop: '8px', color: '#0066CC' }}>{line}</div>
     if (line.trim() === '')
       return <div key={keyOffset + i} style={{ height: '6px' }} />
     return <div key={keyOffset + i}>{line}</div>
