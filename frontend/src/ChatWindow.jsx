@@ -66,16 +66,51 @@ function EmergencyDoctorCard({ doctor, onBook }) {
 }
 
 /* ── Message text renderer ────────────────────────────── */
-function renderMessageText(text) {
+const DISCLAIMER_RE = /⚠️DISCLAIMER:([\s\S]*?)⚠️END/g
+
+function renderLines(text, keyOffset = 0) {
   return text.split('\n').map((line, i) => {
     if (line.startsWith('💊') || line.startsWith('🏠'))
-      return <div key={i} style={{ fontWeight: 'bold', fontSize: '0.95rem', marginTop: '10px' }}>{line}</div>
+      return <div key={keyOffset + i} style={{ fontWeight: 'bold', fontSize: '0.95rem', marginTop: '10px' }}>{line}</div>
     if (line.startsWith('•'))
-      return <div key={i} style={{ paddingLeft: '16px', margin: '2px 0' }}>{line}</div>
+      return <div key={keyOffset + i} style={{ paddingLeft: '16px', margin: '2px 0' }}>{line}</div>
     if (line.trim() === '')
-      return <div key={i} style={{ height: '6px' }} />
-    return <div key={i}>{line}</div>
+      return <div key={keyOffset + i} style={{ height: '6px' }} />
+    return <div key={keyOffset + i}>{line}</div>
   })
+}
+
+function renderMessageText(text) {
+  const parts = []
+  let last = 0
+  let match
+  let idx = 0
+  DISCLAIMER_RE.lastIndex = 0
+  while ((match = DISCLAIMER_RE.exec(text)) !== null) {
+    if (match.index > last) {
+      parts.push(...renderLines(text.slice(last, match.index), idx))
+      idx += 100
+    }
+    parts.push(
+      <div key={`disc-${idx}`} style={{
+        background: '#fffbea',
+        borderLeft: '3px solid #f59e0b',
+        fontSize: '0.85rem',
+        fontStyle: 'italic',
+        padding: '8px 12px',
+        borderRadius: '4px',
+        margin: '6px 0',
+      }}>
+        {match[1].trim()}
+      </div>
+    )
+    idx += 1
+    last = match.index + match[0].length
+  }
+  if (last < text.length) {
+    parts.push(...renderLines(text.slice(last), idx))
+  }
+  return parts
 }
 
 /* ── Sub-components ───────────────────────────────────── */

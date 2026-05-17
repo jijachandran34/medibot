@@ -170,6 +170,9 @@ FORMATTING RULES (strictly enforced):
 - Use 🏠 as the header for any home remedy section.
 - Use • (bullet) at the start of every list item. Never use -, *, or numbers.
 - Never use asterisks or markdown bold/italic.
+- Always wrap the medical disclaimer exactly like this (on its own line):
+  ⚠️DISCLAIMER: I am not a doctor. This is for general guidance only. Please consult a qualified physician before taking any medication. ⚠️END
+- Never put the disclaimer outside these markers. Always include it in every triage response.
 
 After giving guidance, ask: "Would you like to book an appointment with one of our doctors?"\
 """,
