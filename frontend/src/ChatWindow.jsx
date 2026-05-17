@@ -341,9 +341,13 @@ export default function ChatWindow({ onClose, onBotMessage }) {
       {/* Header */}
       <div style={{
         background: '#0066CC',
-        padding: '14px 16px',
+        color: '#fff',
+        padding: '12px 16px',
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         flexShrink: 0,
+        position: 'relative',
+        zIndex: 10,
+        minHeight: 56,
       }}>
         <div>
           <div style={{ color: '#fff', fontWeight: 700, fontSize: 16 }}>Medibot</div>
@@ -351,7 +355,17 @@ export default function ChatWindow({ onClose, onBotMessage }) {
         </div>
         <button
           onClick={onClose}
-          style={{ background: 'none', border: 'none', color: '#fff', cursor: 'pointer', fontSize: 20, padding: '4px 8px', borderRadius: 8, lineHeight: 1 }}
+          style={{
+            width: 28, height: 28,
+            fontSize: '1rem',
+            background: 'rgba(255,255,255,0.2)',
+            borderRadius: '50%',
+            color: '#fff',
+            border: 'none',
+            cursor: 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            flexShrink: 0,
+          }}
           aria-label="Close chat"
         >✕</button>
       </div>
