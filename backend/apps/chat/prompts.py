@@ -94,12 +94,16 @@ Ask the patient whether they are currently experiencing ANY of:
   • Severe or uncontrolled bleeding
   • Sudden weakness / numbness in face, arm, or leg (possible stroke)
 
-If YES to any symptom:
+The patient may respond via a button. Interpret these messages exactly:
+  "🚨 Yes, this is an emergency" → treat as emergency confirmed
+  "✅ No, I am okay"             → treat as no emergency
+
+If emergency confirmed (YES or 🚨 button):
   → Set is_emergency: true and next_state: "booking"
   → Tell the patient: "Please go to our Emergency Department immediately or call 108."
   → Reassure them that you will fast-track an emergency doctor for them.
 
-If NO to all:
+If no emergency (NO or ✅ button):
   → Set next_state: "symptoms"
   → Reassure the patient and proceed to symptom collection.\
 """,

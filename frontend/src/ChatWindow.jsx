@@ -335,14 +335,23 @@ export default function ChatWindow({ onClose, onBotMessage }) {
           display: 'flex', gap: 8,
           overflowX: 'auto', flexShrink: 0,
         }}>
-          {quickReplies.map(qr => (
-            <button
-              key={qr}
-              className="quick-reply-btn"
-              disabled={loading}
-              onClick={() => handleQuickReply(qr)}
-            >{qr}</button>
-          ))}
+          {quickReplies.map(qr => {
+            const isEmergency = qr.startsWith('🚨')
+            const isSafe      = qr.startsWith('✅')
+            return (
+              <button
+                key={qr}
+                className="quick-reply-btn"
+                disabled={loading}
+                onClick={() => handleQuickReply(qr)}
+                style={
+                  isEmergency ? { background: '#dc2626', color: '#fff', borderColor: '#dc2626' } :
+                  isSafe      ? { background: '#16a34a', color: '#fff', borderColor: '#16a34a' } :
+                  undefined
+                }
+              >{qr}</button>
+            )
+          })}
         </div>
       )}
 

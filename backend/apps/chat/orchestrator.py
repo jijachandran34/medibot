@@ -15,7 +15,7 @@ _client = None
 
 QUICK_REPLIES = {
     'identify':        ["I'm a new patient", "I'm an existing patient"],
-    'emergency_check': ["Yes, emergency", "No, I'm okay"],
+    'emergency_check': ["🚨 Yes, this is an emergency", "✅ No, I am okay"],
     'triage':          ["Book an appointment", "No thanks"],
 }
 
