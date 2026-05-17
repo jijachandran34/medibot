@@ -67,6 +67,22 @@ def _get_available_slots_text():
     return "\n".join(lines)
 
 
+def _get_booking_quick_replies():
+    """Return tappable slot buttons for the booking state."""
+    from apps.doctors.models import Slot
+    slots = (
+        Slot.objects
+        .filter(is_booked=False)
+        .select_related('doctor')
+        .order_by('date', 'time')
+    )
+    replies = []
+    for slot in slots:
+        label = f"Dr. {slot.doctor.name} — {slot.date.strftime('%d %b')}, {slot.time.strftime('%I:%M %p').lstrip('0')}"
+        replies.append(label)
+    return replies
+
+
 def _get_emergency_doctor():
     """Return a dict with emergency doctor info, or None if unavailable."""
     from apps.doctors.models import Doctor, Department
@@ -249,6 +265,9 @@ def handle_message(conversation, user_message_text):
         conversation=conversation, role='assistant', content=clean_reply
     )
 
-    quick_replies = QUICK_REPLIES.get(next_state, [])
+    if next_state == 'booking' or conversation.state == 'booking':
+        quick_replies = _get_booking_quick_replies()
+    else:
+        quick_replies = QUICK_REPLIES.get(next_state, [])
 
     return clean_reply, next_state, is_emergency, quick_replies, emergency_doctor

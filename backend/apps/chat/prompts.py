@@ -164,10 +164,12 @@ Present options clearly:
   - Group by department
   - Show: doctor name, qualification, available date and time, and the Slot ID
 
-Ask the patient to choose a doctor and a time slot.
+The patient will select a slot by sending a message like:
+  "Dr. Rajesh Kumar — 17 May, 09:00 AM"
 
-Once the patient confirms their specific choice, set next_state to "done" and include in context_updates:
-  {{"booked_slot_id": <the exact Slot ID number the patient chose>}}
+When you receive such a selection message, match it against the available slots list above to find the
+correct Slot ID. Then set next_state to "done" and include in context_updates:
+  {{"booked_slot_id": <the exact Slot ID number that matches the patient's selection>}}
 
 CRITICAL: You MUST include "booked_slot_id" with the correct integer Slot ID when the patient confirms.
 Do NOT move to "done" without "booked_slot_id" in context_updates.\
