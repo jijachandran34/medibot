@@ -15,7 +15,7 @@ _client = None
 
 QUICK_REPLIES = {
     'identify':        ["I'm a new patient", "I'm an existing patient"],
-    'emergency_check': ["🚨 Yes, this is an emergency", "✅ No, I am okay"],
+    'emergency_check': ["Yes, emergency", "No, I'm okay"],
     'triage':          ["Book an appointment", "No thanks"],
 }
 
@@ -65,26 +65,6 @@ def _get_available_slots_text():
                 lines.append(f"  - Slot ID {slot.pk}: {slot.date} at {slot.time.strftime('%H:%M')}")
 
     return "\n".join(lines)
-
-
-def _get_booking_quick_replies():
-    """Build tappable slot buttons for the booking state."""
-    from apps.doctors.models import Doctor
-    doctors = (
-        Doctor.objects
-        .select_related('department')
-        .prefetch_related('slots')
-        .filter(slots__is_booked=False)
-        .distinct()
-        .order_by('department__name', 'name')
-    )
-    replies = []
-    for doctor in doctors:
-        for slot in doctor.slots.filter(is_booked=False).order_by('date', 'time'):
-            date_str = slot.date.strftime('%d %b')
-            time_str = slot.time.strftime('%I:%M %p')
-            replies.append(f"Dr. {doctor.name} — {date_str}, {time_str}")
-    return replies
 
 
 def _get_emergency_doctor():
@@ -172,11 +152,6 @@ def _create_appointment_if_booked(conversation, context_updates):
         appt.pk, patient.name, slot.doctor.name, slot.date, slot.time,
     )
 
-    # Store reference number in conversation context so done-state prompt can cite it
-    appt_ref = f"KH{appt.pk:05d}"
-    conversation.context['appointment_ref'] = appt_ref
-    conversation.save(update_fields=['context'])
-
 
 def handle_message(conversation, user_message_text):
     # Persist the incoming user message so it is part of the history sent to Claude.
@@ -243,20 +218,10 @@ def handle_message(conversation, user_message_text):
 
     # Persist clean assistant reply
     clean_reply = _clean_response(raw_reply)
-
-    # If appointment was just created, append the reference number to the reply
-    if isinstance(context_updates, dict) and 'booked_slot_id' in context_updates:
-        appt_ref = conversation.context.get('appointment_ref')
-        if appt_ref:
-            clean_reply += f"\n\nYour appointment reference number is **{appt_ref}**. Please save this for future visits."
-
     Message.objects.create(
         conversation=conversation, role='assistant', content=clean_reply
     )
 
-    if next_state == 'booking':
-        quick_replies = _get_booking_quick_replies()
-    else:
-        quick_replies = QUICK_REPLIES.get(next_state, [])
+    quick_replies = QUICK_REPLIES.get(next_state, [])
 
     return clean_reply, next_state, is_emergency, quick_replies, emergency_doctor

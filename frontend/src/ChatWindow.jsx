@@ -12,53 +12,6 @@ function isAppointmentConfirm(msg) {
   return t.includes('appointment') || t.includes('confirmed') || t.includes('booked') || t.includes('slot')
 }
 
-/* ── Rich text renderer for bot messages ─────────────── */
-function renderBubbleContent(text) {
-  // Split on ⚠️DISCLAIMER:...⚠️END blocks
-  const re = /⚠️DISCLAIMER:([\s\S]*?)⚠️END/g
-  const parts = []
-  let last = 0, m
-  while ((m = re.exec(text)) !== null) {
-    if (m.index > last) parts.push({ kind: 'text', body: text.slice(last, m.index).trim() })
-    parts.push({ kind: 'disclaimer', body: m[1].trim() })
-    last = m.index + m[0].length
-  }
-  const tail = text.slice(last).trim()
-  if (tail) parts.push({ kind: 'text', body: tail })
-  if (!parts.length) parts.push({ kind: 'text', body: text })
-
-  return parts.map((part, pi) => {
-    if (part.kind === 'disclaimer') {
-      return (
-        <div key={pi} style={{
-          background: '#fffbea',
-          borderLeft: '3px solid #f59e0b',
-          borderRadius: 4,
-          padding: '8px 12px',
-          margin: '6px 0',
-          fontSize: '0.85rem',
-          fontStyle: 'italic',
-          lineHeight: 1.5,
-        }}>{part.body}</div>
-      )
-    }
-    return (
-      <div key={pi}>
-        {part.body.split('\n').map((line, li) => {
-          if (!line) return <br key={li} />
-          if (line.startsWith('💊') || line.startsWith('🏠')) {
-            return <div key={li} style={{ fontWeight: 700, marginTop: li > 0 ? 8 : 0, marginBottom: 2 }}>{line}</div>
-          }
-          if (line.startsWith('•')) {
-            return <div key={li} style={{ paddingLeft: 10, marginTop: 2 }}>{line}</div>
-          }
-          return <div key={li}>{line}</div>
-        })}
-      </div>
-    )
-  })
-}
-
 /* ── Emergency doctor card ────────────────────────────── */
 function EmergencyDoctorCard({ doctor, onBook }) {
   if (!doctor) return null
@@ -140,12 +93,13 @@ function Bubble({ msg, showLabel }) {
     fontSize: 14,
     lineHeight: 1.55,
     wordBreak: 'break-word',
+    whiteSpace: 'pre-wrap',
   }
 
   let prefix = ''
 
   if (isUser) {
-    bubbleStyle = { ...bubbleStyle, background: '#0066CC', color: '#fff', alignSelf: 'flex-end', whiteSpace: 'pre-wrap' }
+    bubbleStyle = { ...bubbleStyle, background: '#0066CC', color: '#fff', alignSelf: 'flex-end' }
   } else if (msg.is_emergency) {
     bubbleStyle = {
       ...bubbleStyle,
@@ -172,12 +126,7 @@ function Bubble({ msg, showLabel }) {
       {!isUser && showLabel && (
         <span style={{ fontSize: 11, color: '#666', fontWeight: 600, marginLeft: 4 }}>Medibot</span>
       )}
-      <div style={bubbleStyle}>
-        {isUser
-          ? msg.content
-          : <>{prefix && <span>{prefix}</span>}{renderBubbleContent(msg.content)}</>
-        }
-      </div>
+      <div style={bubbleStyle}>{prefix}{msg.content}</div>
       <span style={{ fontSize: 10, color: '#bbb', marginTop: 1, marginLeft: isUser ? 0 : 4 }}>
         {fmt(msg.timestamp)}
       </span>
@@ -187,13 +136,13 @@ function Bubble({ msg, showLabel }) {
 
 /* ── Main component ───────────────────────────────────── */
 export default function ChatWindow({ onClose, onBotMessage }) {
-  const [messages, setMessages]         = useState([])
-  const [input, setInput]               = useState('')
-  const [loading, setLoading]           = useState(false)
-  const [token, setToken]               = useState(null)
+  const [messages, setMessages]       = useState([])
+  const [input, setInput]             = useState('')
+  const [loading, setLoading]         = useState(false)
+  const [token, setToken]             = useState(null)
   const [quickReplies, setQuickReplies] = useState([])
-  const bottomRef = useRef(null)
-  const inputRef  = useRef(null)
+  const bottomRef  = useRef(null)
+  const inputRef   = useRef(null)
 
   /* Core send function — token passed explicitly to avoid stale closure */
   async function callSend(tkn, text) {
@@ -235,8 +184,10 @@ export default function ChatWindow({ onClose, onBotMessage }) {
       setToken(tkn)
 
       if (isNew) {
+        /* Fresh session — auto-greet */
         await callSend(tkn, 'hi')
       } else {
+        /* Returning session — restore history */
         try {
           const session = await getSession(tkn)
           if (!alive) return
@@ -323,30 +274,17 @@ export default function ChatWindow({ onClose, onBotMessage }) {
         <div style={{
           padding: '8px 12px',
           borderTop: '1px solid #eee',
-          display: 'flex', gap: 6,
-          flexWrap: 'wrap',
-          maxHeight: 140,
-          overflowY: 'auto',
-          flexShrink: 0,
+          display: 'flex', gap: 8,
+          overflowX: 'auto', flexShrink: 0,
         }}>
-          {quickReplies.map(qr => {
-            const isEmergencyBtn = qr.startsWith('🚨')
-            const isSafeBtn = qr.startsWith('✅')
-            const overrideStyle = isEmergencyBtn
-              ? { background: '#dc2626', color: '#fff', borderColor: '#dc2626' }
-              : isSafeBtn
-              ? { background: '#16a34a', color: '#fff', borderColor: '#16a34a' }
-              : {}
-            return (
-              <button
-                key={qr}
-                className="quick-reply-btn"
-                style={overrideStyle}
-                disabled={loading}
-                onClick={() => { if (!loading && token) callSend(token, qr) }}
-              >{qr}</button>
-            )
-          })}
+          {quickReplies.map(qr => (
+            <button
+              key={qr}
+              className="quick-reply-btn"
+              disabled={loading}
+              onClick={() => { if (!loading && token) callSend(token, qr) }}
+            >{qr}</button>
+          ))}
         </div>
       )}
 
