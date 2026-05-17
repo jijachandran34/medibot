@@ -136,19 +136,26 @@ function Bubble({ msg, showLabel }) {
 
 /* ── Main component ───────────────────────────────────── */
 export default function ChatWindow({ onClose, onBotMessage }) {
-  const [messages, setMessages]       = useState([])
-  const [input, setInput]             = useState('')
-  const [loading, setLoading]         = useState(false)
-  const [token, setToken]             = useState(null)
+  const [messages, setMessages]         = useState([])
+  const [input, setInput]               = useState('')
+  const [loading, setLoading]           = useState(false)
+  const [token, setToken]               = useState(null)
   const [quickReplies, setQuickReplies] = useState([])
-  const bottomRef  = useRef(null)
-  const inputRef   = useRef(null)
+  const [qrClickCount, setQrClickCount] = useState(0)   // tracks clicks per turn
+  const [sessionKey, setSessionKey]     = useState(0)   // bumped by Start Over to re-run init
+  const isSendingRef      = useRef(false)               // synchronous in-flight guard
+  const userClickedReply  = useRef(false)               // true after any QR click until state changes
+  const prevStateRef      = useRef(null)                // last known conversation state
+  const bottomRef         = useRef(null)
+  const inputRef          = useRef(null)
 
   /* Core send function — token passed explicitly to avoid stale closure */
   async function callSend(tkn, text) {
+    if (isSendingRef.current) return              // behaviour 2: ignore if already in flight
+    isSendingRef.current = true
     setMessages(prev => [...prev, { role: 'user', content: text, timestamp: new Date() }])
     setLoading(true)
-    setQuickReplies([])
+    setQuickReplies([])                           // behaviour 1: buttons gone immediately
     try {
       const res = await sendMessage(tkn, text)
       const botMsg = {
@@ -160,7 +167,20 @@ export default function ChatWindow({ onClose, onBotMessage }) {
         emergency_doctor: res.emergency_doctor || null,
       }
       setMessages(prev => [...prev, botMsg])
-      setQuickReplies(res.quick_replies || [])
+      // BUG 1 fix: suppress new quick replies if user already clicked one this turn,
+      // unless the state just changed (new stage = new set of buttons is appropriate)
+      if (userClickedReply.current) {
+        if (res.state !== prevStateRef.current) {
+          userClickedReply.current = false          // state changed — reset flag, show new buttons
+          setQuickReplies(res.quick_replies || [])
+        } else {
+          setQuickReplies([])                       // same state — keep buttons gone
+        }
+      } else {
+        setQuickReplies(res.quick_replies || [])
+      }
+      prevStateRef.current = res.state
+      setQrClickCount(0)                          // reset click counter for the new turn
       if (onBotMessage) onBotMessage()
     } catch {
       setMessages(prev => [...prev, {
@@ -170,8 +190,45 @@ export default function ChatWindow({ onClose, onBotMessage }) {
       }])
     } finally {
       setLoading(false)
+      isSendingRef.current = false
       setTimeout(() => inputRef.current?.focus(), 50)
     }
+  }
+
+  /* Quick reply click handler — all guard logic lives here */
+  function handleQuickReply(qr) {
+    if (isSendingRef.current) return              // behaviour 2: in-flight, ignore silently
+
+    const newCount = qrClickCount + 1
+    setQrClickCount(newCount)
+
+    if (newCount >= 2) {                          // behaviour 3: 2nd click in same turn
+      setQuickReplies([])
+      setMessages(prev => [...prev, {
+        role: 'system',
+        content: 'Please type your response or wait for Medibot to reply.',
+        timestamp: new Date(),
+      }])
+      return
+    }
+
+    userClickedReply.current = true               // mark: suppress re-showing buttons on response
+    callSend(token, qr)                           // behaviour 1: first click sends + clears
+  }
+
+  /* Start Over — behaviour 4 */
+  function handleStartOver() {
+    localStorage.removeItem('kauvery_session')
+    isSendingRef.current = false
+    userClickedReply.current = false
+    prevStateRef.current = null
+    setMessages([])
+    setQuickReplies([])
+    setQrClickCount(0)
+    setInput('')
+    setLoading(false)
+    setToken(null)
+    setSessionKey(k => k + 1)                     // re-triggers init useEffect
   }
 
   /* Init: get or create session, load history or auto-start */
@@ -184,10 +241,8 @@ export default function ChatWindow({ onClose, onBotMessage }) {
       setToken(tkn)
 
       if (isNew) {
-        /* Fresh session — auto-greet */
         await callSend(tkn, 'hi')
       } else {
-        /* Returning session — restore history */
         try {
           const session = await getSession(tkn)
           if (!alive) return
@@ -208,7 +263,7 @@ export default function ChatWindow({ onClose, onBotMessage }) {
       }
     })()
     return () => { alive = false }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [sessionKey]) // eslint-disable-line react-hooks/exhaustive-deps
 
   /* Auto-scroll */
   useEffect(() => {
@@ -241,16 +296,27 @@ export default function ChatWindow({ onClose, onBotMessage }) {
           <div style={{ color: '#fff', fontWeight: 700, fontSize: 16 }}>Medibot</div>
           <div style={{ color: 'rgba(255,255,255,0.75)', fontSize: 11 }}>Kauvery Hospital · AI Assistant</div>
         </div>
-        <button
-          onClick={onClose}
-          style={{ background: 'none', border: 'none', color: '#fff', cursor: 'pointer', fontSize: 20, padding: '4px 8px', borderRadius: 8, lineHeight: 1 }}
-          aria-label="Close chat"
-        >✕</button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <button
+            onClick={handleStartOver}
+            style={{ background: 'none', border: 'none', color: '#fff', cursor: 'pointer', fontSize: 15, padding: '4px 8px', borderRadius: 8, opacity: 0.85, lineHeight: 1 }}
+            aria-label="Start over"
+            title="Start a new conversation"
+          >🔄</button>
+          <button
+            onClick={onClose}
+            style={{ background: 'none', border: 'none', color: '#fff', cursor: 'pointer', fontSize: 20, padding: '4px 8px', borderRadius: 8, lineHeight: 1 }}
+            aria-label="Close chat"
+          >✕</button>
+        </div>
       </div>
 
       {/* Messages */}
       <div style={{ flex: 1, overflowY: 'auto', padding: '14px 14px 4px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         {messages.map((msg, i) => {
+          if (msg.role === 'system') {
+            return <div key={i} className="system-msg">{msg.content}</div>
+          }
           const prev = messages[i - 1]
           const showLabel = msg.role === 'assistant' && (!prev || prev.role !== 'assistant')
           return (
@@ -282,7 +348,7 @@ export default function ChatWindow({ onClose, onBotMessage }) {
               key={qr}
               className="quick-reply-btn"
               disabled={loading}
-              onClick={() => { if (!loading && token) callSend(token, qr) }}
+              onClick={() => handleQuickReply(qr)}
             >{qr}</button>
           ))}
         </div>
