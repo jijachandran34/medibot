@@ -57,17 +57,28 @@ def _state_instructions(state):
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 STATE: identify — Patient Identification
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Determine whether this is a new or existing patient, then collect their details.
+Check the "Information already collected" section above before asking anything.
 
-EXISTING patient → ask for their registered mobile number or patient ID. Look them up and confirm their name.
+PATH A — EXISTING PATIENT (patient_type = "existing" already in context):
+  Their details (name, age, gender, mobile) are already loaded from our database.
+  DO NOT ask for age, gender, or mobile — that data is already confirmed.
+  Only ask: "Is your name [patient_name]? Please confirm."
+  If they confirm → set next_state: "emergency_check" immediately.
+  If they say no → treat as new patient (PATH B).
 
-NEW patient → collect these four fields (you may gather multiple at once if offered):
-  1. Full name
-  2. Age
-  3. Gender (Male / Female / Other)
-  4. Mobile number (10 digits)
+PATH B — NEW PATIENT (no patient data in context yet):
+  Step 1: Ask whether they are a new or existing patient.
+  Step 2: If existing → ask for their registered mobile number (10 digits).
+            The system will look them up. If found, their details appear in context → follow PATH A.
+            If not found → continue as new patient.
+  Step 3: If new → collect all four fields (may be given together):
+            1. Full name
+            2. Age
+            3. Gender (Male / Female / Other)
+            4. Mobile number (10 digits)
+          Once all four are collected → set next_state: "emergency_check".
 
-Once all four are confirmed, acknowledge them and set next_state to "emergency_check".\
+STRICT RULE: Never collect information already present in the "Information already collected" section.\
 """,
 
         'emergency_check': """\
@@ -83,12 +94,16 @@ Ask the patient whether they are currently experiencing ANY of:
   • Severe or uncontrolled bleeding
   • Sudden weakness / numbness in face, arm, or leg (possible stroke)
 
-If YES to any symptom:
+The patient may respond via a button. Interpret these messages exactly:
+  "🚨 Yes, this is an emergency" → treat as emergency confirmed
+  "✅ No, I am okay"             → treat as no emergency
+
+If emergency confirmed (YES or 🚨 button):
   → Set is_emergency: true and next_state: "booking"
   → Tell the patient: "Please go to our Emergency Department immediately or call 108."
   → Reassure them that you will fast-track an emergency doctor for them.
 
-If NO to all:
+If no emergency (NO or ✅ button):
   → Set next_state: "symptoms"
   → Reassure the patient and proceed to symptom collection.\
 """,
@@ -153,10 +168,12 @@ Present options clearly:
   - Group by department
   - Show: doctor name, qualification, available date and time, and the Slot ID
 
-Ask the patient to choose a doctor and a time slot.
+The patient will select a slot by sending a message like:
+  "Dr. Rajesh Kumar — 17 May, 09:00 AM"
 
-Once the patient confirms their specific choice, set next_state to "done" and include in context_updates:
-  {{"booked_slot_id": <the exact Slot ID number the patient chose>}}
+When you receive such a selection message, match it against the available slots list above to find the
+correct Slot ID. Then set next_state to "done" and include in context_updates:
+  {{"booked_slot_id": <the exact Slot ID number that matches the patient's selection>}}
 
 CRITICAL: You MUST include "booked_slot_id" with the correct integer Slot ID when the patient confirms.
 Do NOT move to "done" without "booked_slot_id" in context_updates.\

@@ -15,7 +15,7 @@ _client = None
 
 QUICK_REPLIES = {
     'identify':        ["I'm a new patient", "I'm an existing patient"],
-    'emergency_check': ["Yes, emergency", "No, I'm okay"],
+    'emergency_check': ["🚨 Yes, this is an emergency", "✅ No, I am okay"],
     'triage':          ["Book an appointment", "No thanks"],
 }
 
@@ -67,6 +67,22 @@ def _get_available_slots_text():
     return "\n".join(lines)
 
 
+def _get_booking_quick_replies():
+    """Return tappable slot buttons for the booking state."""
+    from apps.doctors.models import Slot
+    slots = (
+        Slot.objects
+        .filter(is_booked=False)
+        .select_related('doctor')
+        .order_by('date', 'time')
+    )
+    replies = []
+    for slot in slots:
+        label = f"Dr. {slot.doctor.name} — {slot.date.strftime('%d %b')}, {slot.time.strftime('%I:%M %p').lstrip('0')}"
+        replies.append(label)
+    return replies
+
+
 def _get_emergency_doctor():
     """Return a dict with emergency doctor info, or None if unavailable."""
     from apps.doctors.models import Doctor, Department
@@ -83,6 +99,19 @@ def _get_emergency_doctor():
                 'phone': '044-4000-0000',
             }
     return None
+
+
+def _lookup_patient_by_mobile(message_text):
+    """Extract a 10-digit mobile number from message_text and return matching Patient or None."""
+    import re
+    from apps.patients.models import Patient
+    match = re.search(r'\b(\d{10})\b', message_text)
+    if not match:
+        return None
+    try:
+        return Patient.objects.get(mobile=match.group(1))
+    except Patient.DoesNotExist:
+        return None
 
 
 def _create_appointment_if_booked(conversation, context_updates):
@@ -165,6 +194,20 @@ def handle_message(conversation, user_message_text):
     )
     messages = [{'role': role, 'content': content} for role, content in history]
 
+    # Existing patient lookup: if still identifying and user gives a mobile, pre-fill context
+    if conversation.state == 'identify' and 'patient_name' not in conversation.context:
+        patient = _lookup_patient_by_mobile(user_message_text)
+        if patient:
+            conversation.context.update({
+                'patient_type':   'existing',
+                'patient_name':   patient.name,
+                'patient_age':    patient.age,
+                'patient_gender': patient.gender,
+                'patient_mobile': patient.mobile,
+            })
+            conversation.save(update_fields=['context'])
+            logger.info("Existing patient found: %s (%s)", patient.name, patient.mobile)
+
     # Build context to inject into system prompt
     if conversation.state in ('symptoms', 'triage'):
         rag_context = query_rag(user_message_text)
@@ -222,6 +265,9 @@ def handle_message(conversation, user_message_text):
         conversation=conversation, role='assistant', content=clean_reply
     )
 
-    quick_replies = QUICK_REPLIES.get(next_state, [])
+    if next_state == 'booking' or conversation.state == 'booking':
+        quick_replies = _get_booking_quick_replies()
+    else:
+        quick_replies = QUICK_REPLIES.get(next_state, [])
 
     return clean_reply, next_state, is_emergency, quick_replies, emergency_doctor

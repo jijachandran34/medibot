@@ -296,19 +296,11 @@ export default function ChatWindow({ onClose, onBotMessage }) {
           <div style={{ color: '#fff', fontWeight: 700, fontSize: 16 }}>Medibot</div>
           <div style={{ color: 'rgba(255,255,255,0.75)', fontSize: 11 }}>Kauvery Hospital · AI Assistant</div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <button
-            onClick={handleStartOver}
-            style={{ background: 'none', border: 'none', color: '#fff', cursor: 'pointer', fontSize: 15, padding: '4px 8px', borderRadius: 8, opacity: 0.85, lineHeight: 1 }}
-            aria-label="Start over"
-            title="Start a new conversation"
-          >🔄</button>
-          <button
-            onClick={onClose}
-            style={{ background: 'none', border: 'none', color: '#fff', cursor: 'pointer', fontSize: 20, padding: '4px 8px', borderRadius: 8, lineHeight: 1 }}
-            aria-label="Close chat"
-          >✕</button>
-        </div>
+        <button
+          onClick={onClose}
+          style={{ background: 'none', border: 'none', color: '#fff', cursor: 'pointer', fontSize: 20, padding: '4px 8px', borderRadius: 8, lineHeight: 1 }}
+          aria-label="Close chat"
+        >✕</button>
       </div>
 
       {/* Messages */}
@@ -343,14 +335,23 @@ export default function ChatWindow({ onClose, onBotMessage }) {
           display: 'flex', gap: 8,
           overflowX: 'auto', flexShrink: 0,
         }}>
-          {quickReplies.map(qr => (
-            <button
-              key={qr}
-              className="quick-reply-btn"
-              disabled={loading}
-              onClick={() => handleQuickReply(qr)}
-            >{qr}</button>
-          ))}
+          {quickReplies.map(qr => {
+            const isEmergency = qr.startsWith('🚨')
+            const isSafe      = qr.startsWith('✅')
+            return (
+              <button
+                key={qr}
+                className="quick-reply-btn"
+                disabled={loading}
+                onClick={() => handleQuickReply(qr)}
+                style={
+                  isEmergency ? { background: '#dc2626', color: '#fff', borderColor: '#dc2626' } :
+                  isSafe      ? { background: '#16a34a', color: '#fff', borderColor: '#16a34a' } :
+                  undefined
+                }
+              >{qr}</button>
+            )
+          })}
         </div>
       )}
 
@@ -386,6 +387,11 @@ export default function ChatWindow({ onClose, onBotMessage }) {
           </svg>
         </button>
       </div>
+
+      {/* Start over */}
+      <button className="start-over-link" onClick={handleStartOver}>
+        🔄 Start new conversation
+      </button>
     </div>
   )
 }
