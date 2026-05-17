@@ -1,117 +1,288 @@
 ENTRY: Common Cold
-Symptoms: runny nose, sneezing, mild sore throat, low-grade fever (below 38.5C), nasal congestion, mild cough
-Duration: typically 7-10 days
-Severity: mild
-OTC Treatment: paracetamol 500mg for fever, cetirizine for runny nose, throat lozenges
-Home Remedies: rest, warm fluids, steam inhalation, honey-ginger tea
-When to see doctor: fever above 39C, symptoms beyond 10 days, difficulty breathing
-
+SYMPTOMS: Runny or stuffy nose, sneezing, mild sore throat, nasal congestion, mild cough, low-grade fever (below 38.5°C), watery eyes, mild fatigue, loss of smell or taste.
+EMERGENCY SIGNS: Difficulty breathing, high fever above 39.5°C lasting more than 3 days, chest pain, severe headache with stiff neck, symptoms worsening rapidly after initial improvement.
+HOME REMEDIES: Rest and sleep adequately. Drink warm fluids — ginger tea, honey-lemon water, warm soups. Steam inhalation with a towel over a bowl of hot water for 10 minutes twice a day. Gargle with warm salt water (1/2 teaspoon salt in 1 cup warm water) for sore throat. Use saline nasal drops or spray for congestion. Keep the room humidified.
+OTC MEDICATIONS: Paracetamol 500mg every 6 hours for fever and body ache (max 4g per day). Cetirizine 10mg once daily for runny nose and sneezing. Loratadine 10mg once daily (non-drowsy alternative). Throat lozenges for sore throat relief. Saline nasal spray for congestion. Disclaimer: Consult a pharmacist or doctor before starting any medication.
+SPECIALIST: General Medicine or ENT if symptoms persist or worsen.
+SEE DOCTOR IF: Fever above 39°C, symptoms lasting more than 10 days, difficulty breathing, ear pain, severe throat pain, or symptoms returning after initial improvement.
+---
 ENTRY: Influenza (Flu)
-Symptoms: sudden high fever (38.5-40C), body aches, severe fatigue, headache, dry cough, chills, loss of appetite
-Duration: 5-7 days for fever; fatigue may persist 2 weeks
-Severity: moderate
-OTC Treatment: paracetamol 500mg-1g every 6 hours, plenty of oral fluids, ORS if dehydrated
-Home Remedies: bed rest, warm broths, steam inhalation, cool compress for fever
-When to see doctor: fever above 40C, chest pain, difficulty breathing, confusion, persistent vomiting
-
-ENTRY: Fever
-Symptoms: body temperature above 38C, sweating, chills, headache, muscle aches, loss of appetite, dehydration
-Duration: varies by cause; viral fevers typically 3-5 days
-Severity: mild to moderate depending on temperature
-OTC Treatment: paracetamol 500mg-1g every 6 hours (max 4g/day), ibuprofen 400mg if no stomach issues
-Home Remedies: cool compress on forehead, light clothing, adequate fluid intake, rest
-Warning: seek emergency care for fever above 40C, fever with stiff neck, difficulty breathing, or severe rash
-
-ENTRY: Headache (Tension Type)
-Symptoms: dull pressure-like pain on both sides of head, tightness around forehead or back of head/neck, mild to moderate intensity
-Duration: 30 minutes to several hours
-Severity: mild to moderate
-OTC Treatment: paracetamol 500mg-1g, ibuprofen 400mg, aspirin (adults only)
-Home Remedies: rest in quiet dark room, cold or warm compress on neck/forehead, hydration, gentle neck stretches
-When to see doctor: severe sudden headache, headache with fever and stiff neck, vision changes, weakness or numbness
-
-ENTRY: Migraine
-Symptoms: severe throbbing pain usually on one side, nausea, vomiting, sensitivity to light and sound, aura (visual disturbances) in some cases
-Duration: 4-72 hours
-Severity: moderate to severe
-OTC Treatment: ibuprofen 400-600mg or paracetamol at onset, lie down in dark quiet room
-Home Remedies: cold pack on head, rest, avoid triggers (bright light, strong smells, stress)
-Referral: Neurology department for recurring migraines; prescription triptans may be needed
-
-ENTRY: Chest Pain (Emergency)
-Symptoms: pressure or squeezing in chest, pain radiating to left arm/jaw/back, shortness of breath, sweating, nausea, dizziness
-Severity: EMERGENCY — may indicate heart attack or pulmonary embolism
-Action: CALL 108 IMMEDIATELY. Do not drive. Chew aspirin 325mg if available and not allergic.
-Home remedies: NONE — this is an emergency
-Referral: Emergency department / Cardiology
-
-ENTRY: Stomach Pain and Nausea
-Symptoms: cramping or dull abdominal pain, nausea, vomiting, bloating, gas, diarrhea or constipation
-Duration: acute episodes 1-3 days
-Severity: mild to moderate
-OTC Treatment: antacids (gelusil, digene) for acidity, domperidone 10mg for nausea, ORS for dehydration
-Home Remedies: bland diet (BRAT: bananas, rice, applesauce, toast), ginger tea, warm water with lemon, avoid spicy/oily food
-When to see doctor: severe pain, blood in stool/vomit, fever above 38.5C, pain lasting more than 3 days
-
-ENTRY: Back Pain
-Symptoms: dull aching or sharp pain in lower back, stiffness, limited range of motion, pain radiating to legs (sciatica)
-Duration: acute: days to weeks; chronic: more than 12 weeks
-Severity: mild to severe
-OTC Treatment: ibuprofen 400mg three times daily with food, paracetamol for mild pain, muscle relaxants if prescribed
-Home Remedies: hot or cold compress, gentle stretching, keep moving (avoid prolonged bed rest), ergonomic posture
-When to see doctor: pain with numbness/tingling in legs, bladder/bowel dysfunction, pain after injury, fever with back pain
-
-ENTRY: Allergic Reaction
-Symptoms: skin rash (hives), itching, runny nose, watery eyes, sneezing, swelling of lips/face in mild cases
-Severe reaction: swelling of throat, difficulty breathing, drop in blood pressure (anaphylaxis — EMERGENCY)
-OTC Treatment: cetirizine 10mg or loratadine 10mg for mild symptoms, calamine lotion for skin rash
-When to see doctor: any throat swelling, difficulty breathing, dizziness — EMERGENCY, use epinephrine if available
-Avoidance: identify and avoid trigger (food, pollen, medication, insect sting)
-
-ENTRY: Diabetes Symptoms
-Symptoms: excessive thirst, frequent urination, unexplained weight loss, blurred vision, slow-healing wounds, fatigue, increased hunger
-Type: Type 1 (childhood onset) or Type 2 (adult, lifestyle-related)
-Severity: moderate to severe — requires medical management
-Action: fasting blood glucose test, HbA1c test
-OTC: glucose monitoring; no OTC cure
-Home Remedies: low-sugar diet, regular exercise, weight management, avoid processed carbs
-Referral: General Medicine or Endocrinology for diagnosis and management plan
-
-ENTRY: Hypertension (High Blood Pressure)
-Symptoms: often asymptomatic; may present with headache, dizziness, blurred vision, chest pain, shortness of breath
-Risk factors: obesity, salt intake, stress, family history, sedentary lifestyle
-Normal BP: less than 120/80 mmHg; Hypertension: above 140/90 mmHg
-Severity: moderate to severe — chronic condition requiring management
-Action: regular BP monitoring, lifestyle changes
-Home Remedies: DASH diet (low sodium, high potassium), exercise 30 min/day, reduce stress, no smoking or alcohol
-Referral: General Medicine or Cardiology for medication if BP remains elevated
-
+SYMPTOMS: Sudden onset high fever (38.5–40°C), severe body aches and muscle pain, intense fatigue and weakness, dry cough, headache, chills and sweating, loss of appetite, sore throat, nasal congestion. Symptoms appear suddenly unlike gradual cold onset.
+EMERGENCY SIGNS: Difficulty breathing or shortness of breath, persistent chest pain or pressure, confusion or altered mental status, severe vomiting preventing fluid intake, bluish lips or face, fever above 40°C, symptoms improve then return with fever and worsening cough.
+HOME REMEDIES: Strict bed rest for at least 3–5 days. Drink 2–3 litres of fluid daily — water, warm broths, electrolyte drinks, coconut water. Cool compress on forehead for high fever. Warm steam inhalation for congestion. Eat light, easily digestible food. Avoid contact with others to prevent spread.
+OTC MEDICATIONS: Paracetamol 500mg–1g every 6 hours (max 4g per day) for fever and body ache. Ibuprofen 400mg every 8 hours with food for pain and inflammation (avoid if kidney disease or stomach ulcers). ORS (oral rehydration solution) if dehydrated. Cough syrup for dry cough. Disclaimer: Antiviral medications like Oseltamivir (Tamiflu) require a prescription — see a doctor within 48 hours of symptom onset for best effect.
+SPECIALIST: General Medicine. Pulmonology if respiratory complications develop.
+SEE DOCTOR IF: Fever above 40°C, difficulty breathing, confusion, persistent vomiting, no improvement after 5 days, or high-risk patients (elderly, pregnant, diabetic, immunocompromised).
+---
+ENTRY: COVID-19 Symptoms
+SYMPTOMS: Fever or chills, dry cough, shortness of breath, fatigue, body aches, loss of taste or smell (anosmia), sore throat, runny nose, headache, nausea or vomiting, diarrhea. Symptoms appear 2–14 days after exposure.
+EMERGENCY SIGNS: Difficulty breathing or shortness of breath, persistent chest pain or pressure, confusion or inability to stay awake, bluish lips, fingertips, or face, oxygen saturation below 94% on pulse oximeter. These require immediate emergency care.
+HOME REMEDIES: Isolate immediately — separate room, mask, separate bathroom if possible. Rest and sleep. Drink plenty of warm fluids. Monitor temperature, oxygen levels with pulse oximeter if available. Steam inhalation for congestion. Prone positioning (lying face down) may help mild breathing difficulty. Track symptoms daily.
+OTC MEDICATIONS: Paracetamol 500mg–1g every 6 hours for fever and body pain. Vitamin C 500mg once daily and Zinc 50mg once daily as supportive care. ORS for dehydration. Avoid Ibuprofen in early COVID unless advised by doctor. Disclaimer: No OTC cure for COVID-19 — antiviral treatment (Molnupiravir, Paxlovid) requires prescription within 5 days of symptoms.
+SPECIALIST: General Medicine for assessment. Pulmonology or ICU for severe cases. Call hospital helpline before visiting to avoid spread.
+SEE DOCTOR IF: Oxygen saturation below 95%, persistent fever above 39°C for more than 3 days, difficulty breathing at rest, chest pain, confusion, or inability to eat or drink.
+---
+ENTRY: Asthma Attack
+SYMPTOMS: Sudden difficulty breathing, wheezing (high-pitched whistling sound when breathing), chest tightness, shortness of breath especially during exertion, coughing especially at night or early morning. Triggers include cold air, dust, pollen, exercise, strong smells, stress.
+EMERGENCY SIGNS: Severe difficulty breathing with lips or fingertips turning blue, speaking only in single words due to breathlessness, ribs visibly sucking in with each breath, no improvement after using rescue inhaler, oxygen saturation below 92%.
+HOME REMEDIES: Sit upright — do not lie down. Use prescribed rescue inhaler (Salbutamol) immediately — 2–4 puffs, wait 20 minutes, repeat if needed. Remain calm — panic worsens breathlessness. Move away from the trigger (dust, smoke, cold air). Sip warm water. Purse-lip breathing technique can help.
+OTC MEDICATIONS: Salbutamol inhaler (reliever — blue inhaler) 2 puffs as needed — available over the counter. Disclaimer: Inhalers must be used correctly with a spacer for best effect. Long-term controller inhalers require a doctor's prescription. Do not rely solely on OTC relievers for frequent attacks.
+SPECIALIST: Pulmonology or Respiratory Medicine for ongoing asthma management and preventer therapy.
+SEE DOCTOR IF: Using rescue inhaler more than twice a week, waking at night with symptoms, any severe attack not responding to inhaler within 15 minutes — go to emergency immediately.
+---
+ENTRY: Pneumonia Warning Signs
+SYMPTOMS: Productive cough with yellow, green, or rust-coloured phlegm, high fever (38.5–40°C) with chills, chest pain that worsens with breathing or coughing, shortness of breath especially with activity, fatigue and weakness, rapid breathing, loss of appetite, confusion in elderly patients.
+EMERGENCY SIGNS: Difficulty breathing at rest, oxygen saturation below 94%, lips or nails turning blue, confusion or altered mental status, unable to keep fluids down, severe chest pain.
+HOME REMEDIES: Rest completely. Drink 2–3 litres of fluid daily — warm water, broths, electrolyte drinks. Use a humidifier. Gentle deep breathing exercises if tolerable. Chest physiotherapy — gentle tapping on back to loosen mucus. Sit upright to ease breathing.
+OTC MEDICATIONS: Paracetamol 1g every 6 hours for fever. ORS for dehydration. Disclaimer: Pneumonia requires prescription antibiotics confirmed by chest X-ray and clinical examination — do NOT self-medicate. Most cases need hospitalization.
+SPECIALIST: General Medicine or Pulmonology. Emergency Department if breathing is severely affected.
+SEE DOCTOR IF: Any suspected pneumonia should be seen within 24 hours. High-fever cough with coloured phlegm and breathing difficulty — do not wait.
+---
+ENTRY: Chest Pain and Heart Attack Signs
+SYMPTOMS: Pressure, squeezing, fullness, or crushing pain in the centre or left side of the chest lasting more than a few minutes. Pain or discomfort radiating to left arm, jaw, neck, back, or stomach. Shortness of breath with or without chest discomfort. Cold sweat, nausea, vomiting, light-headedness.
+EMERGENCY SIGNS: Any chest pain lasting more than 5 minutes is a cardiac emergency. Call 108 immediately. Women may have atypical symptoms — jaw pain, upper back pain, nausea, fatigue without classic chest pain. Do not drive yourself to hospital.
+HOME REMEDIES: None — this is a medical emergency. Sit or lie down in a comfortable position. Loosen tight clothing. If not allergic and no stomach bleeding — chew one aspirin 325mg while waiting for ambulance.
+OTC MEDICATIONS: Aspirin 325mg — chew (do not swallow whole) if heart attack is suspected and patient is not allergic. This is a first-aid measure only. Disclaimer: No OTC treatment replaces emergency care for chest pain.
+SPECIALIST: Emergency Department and Cardiology immediately. Time-sensitive — every minute matters for heart muscle survival.
+SEE DOCTOR IF: ANY chest pain — immediately. Do not wait, do not drive. Call 108.
+---
+ENTRY: Stroke Symptoms — FAST
+SYMPTOMS: Use FAST — Face drooping (one side of face droops or is numb), Arm weakness (one arm weak or numb, drifts downward when raised), Speech difficulty (slurred, strange, or unable to speak), Time to call 108 immediately. Other symptoms: sudden severe headache with no known cause, sudden confusion, sudden vision problems in one or both eyes, sudden dizziness or loss of balance.
+EMERGENCY SIGNS: All stroke symptoms are emergencies. Every second without treatment destroys brain cells. The window for clot-busting treatment (thrombolysis) is 4.5 hours from symptom onset.
+HOME REMEDIES: None. Keep the person calm and still. Do not give food or water — they may not be able to swallow. Lay them on their side if unconscious. Note the exact time symptoms started.
+OTC MEDICATIONS: None. Do not give aspirin for suspected stroke without medical guidance — some strokes are caused by bleeding not clots.
+SPECIALIST: Emergency Department and Neurology immediately. Call 108 — do not drive.
+SEE DOCTOR IF: Immediately — any stroke symptom is a 108 emergency. Note symptom onset time.
+---
+ENTRY: High Blood Pressure Symptoms
+SYMPTOMS: Often completely silent — hypertension is called the "silent killer." When present: headache (especially at back of head in the morning), dizziness, blurred or double vision, nosebleeds, shortness of breath, palpitations, facial flushing. BP above 140/90 mmHg on two readings confirms hypertension.
+EMERGENCY SIGNS: BP above 180/120 mmHg — hypertensive crisis. Severe headache, chest pain, shortness of breath, vision changes, confusion, or stroke symptoms with very high BP require emergency care.
+HOME REMEDIES: DASH diet — reduce salt to less than 5g daily, increase fruits, vegetables, whole grains, low-fat dairy. Exercise 30 minutes moderate intensity 5 days a week. Reduce alcohol and quit smoking. Manage stress — yoga, meditation, deep breathing. Monitor BP at home regularly. Maintain healthy weight.
+OTC MEDICATIONS: No OTC medications treat hypertension. Disclaimer: Blood pressure medications require prescription and regular monitoring. Never stop prescribed BP medication without consulting your doctor.
+SPECIALIST: General Medicine or Cardiology for initial management and medication.
+SEE DOCTOR IF: Any reading above 140/90 on two separate occasions. Immediately if BP above 180/120 or any danger signs present.
+---
+ENTRY: Palpitations
+SYMPTOMS: Feeling of racing, pounding, fluttering, or irregular heartbeat. Sensation of skipped beats. May feel in chest, throat, or neck. Often triggered by caffeine, stress, exercise, dehydration, anxiety, alcohol, thyroid issues, or fever.
+EMERGENCY SIGNS: Palpitations with chest pain, fainting or near-fainting, severe shortness of breath, palpitations lasting more than 15 minutes, or palpitations in someone with known heart disease — all require immediate evaluation.
+HOME REMEDIES: Sit down and rest immediately. Deep slow breathing — breathe in for 4 counts, hold 4, out for 4. Drink a glass of cold water. Avoid caffeine, alcohol, and energy drinks. Vagal manoeuvres (bearing down gently or splashing cold water on face) may reset heart rhythm — only if taught by doctor.
+OTC MEDICATIONS: None for palpitations themselves. Treating the trigger (e.g., paracetamol for fever, ORS for dehydration) may help. Disclaimer: Never self-medicate for heart rhythm problems.
+SPECIALIST: Cardiology for evaluation including ECG and Holter monitoring.
+SEE DOCTOR IF: First episode of palpitations, palpitations lasting more than a few minutes, any accompanying symptoms (chest pain, dizziness, fainting), or known heart condition.
+---
+ENTRY: Nausea and Vomiting
+SYMPTOMS: Feeling of unease and discomfort in the stomach with an urge to vomit, actual vomiting, loss of appetite, excessive salivation, pale skin, sweating, dizziness. Causes include viral infection, food poisoning, motion sickness, pregnancy, medication side effects, or head injury.
+EMERGENCY SIGNS: Vomiting blood or coffee ground material, severe abdominal pain with vomiting, signs of dehydration (no urination for 8 hours, extreme thirst, sunken eyes), vomiting after head injury, projectile vomiting in infants, vomiting with severe headache and stiff neck.
+HOME REMEDIES: Sip small amounts of clear fluid every 15 minutes — water, ORS, coconut water, flat ginger ale. BRAT diet when tolerating fluids — bananas, rice, applesauce, toast. Ginger tea or ginger candies for nausea. Avoid solid food for 2–3 hours after vomiting. Rest with head elevated. Avoid strong smells.
+OTC MEDICATIONS: Domperidone 10mg before meals for nausea (do not exceed 3 days without consultation). Ondansetron 4mg (available OTC in India) for severe nausea. ORS — essential for rehydration. Disclaimer: Prolonged vomiting requires medical evaluation to identify and treat the underlying cause.
+SPECIALIST: General Medicine. Gastroenterology if recurrent or chronic.
+SEE DOCTOR IF: Vomiting lasting more than 24 hours in adults, any blood in vomit, unable to keep fluids down for 8 hours, signs of dehydration, severe abdominal pain, or known pregnancy with severe vomiting.
+---
 ENTRY: Diarrhea and Dehydration
-Symptoms: loose watery stools 3 or more times/day, stomach cramps, nausea, urgent bowel movement, dehydration signs (dry mouth, dark urine)
-Duration: acute diarrhea resolves within 2-3 days
-OTC Treatment: ORS (oral rehydration solution) — essential; loperamide 2mg for adults if no blood in stool; probiotics
-Home Remedies: BRAT diet, boiled rice water, banana, coconut water, avoid dairy and spicy food
-When to see doctor: blood in stool, fever above 39C, dehydration signs in children/elderly, diarrhea beyond 3 days
-
-ENTRY: Sore Throat and Tonsillitis
-Symptoms: pain or scratchy feeling in throat, pain on swallowing, red/swollen tonsils, white patches (bacterial), mild fever, swollen lymph nodes
-Duration: viral: 3-7 days; bacterial (strep): needs antibiotics
-OTC Treatment: paracetamol or ibuprofen for pain, throat lozenges, benzydamine gargle
-Home Remedies: warm salt water gargle, honey-lemon tea, cold drinks/ice cream for soothing
-When to see doctor: high fever, difficulty swallowing/breathing, abscess, symptoms beyond 7 days
-
+SYMPTOMS: Loose or watery stools 3 or more times in 24 hours, stomach cramps and bloating, urgency, nausea, possible fever and vomiting. Dehydration signs: dry mouth, decreased urination, dark yellow urine, dizziness, sunken eyes, increased thirst.
+EMERGENCY SIGNS: Blood or mucus in stool, high fever above 39°C, signs of severe dehydration (very dry mouth, no urination for 8+ hours, confusion, rapid heartbeat), diarrhea in infants or elderly lasting more than 24 hours, recent travel to high-risk area.
+HOME REMEDIES: ORS is the most important treatment — drink after every loose stool. Drink coconut water, rice water, diluted fruit juices. BRAT diet — bananas, rice, applesauce, toast, boiled potatoes. Avoid dairy, spicy food, caffeine, alcohol, and raw vegetables. Probiotics — curd (plain yoghurt) helps restore gut bacteria. Rest.
+OTC MEDICATIONS: ORS (WHO formula) — most critical — drink 200–400ml after each loose stool. Loperamide 2mg after first loose stool, then 2mg after each subsequent stool (max 8mg/day) — do not use if blood in stool or fever above 38.5°C. Racecadotril 100mg three times daily — reduces stool output. Probiotics. Disclaimer: Antibiotics for diarrhea require prescription and stool culture. Do not self-prescribe antibiotics.
+SPECIALIST: General Medicine. Gastroenterology if chronic (more than 4 weeks).
+SEE DOCTOR IF: Blood in stool, fever, no improvement after 48 hours in adults, any diarrhea in infants under 6 months, severe dehydration signs, or return from foreign travel.
+---
+ENTRY: Constipation
+SYMPTOMS: Fewer than 3 bowel movements per week, stools that are hard, dry, and difficult to pass, straining during bowel movements, feeling of incomplete evacuation, abdominal bloating and discomfort, lower abdominal cramps.
+EMERGENCY SIGNS: No bowel movement for more than 7 days, severe abdominal pain and bloating, vomiting with constipation, blood in stool, sudden change in bowel habits in adults over 40.
+HOME REMEDIES: Increase dietary fibre — fruits (papaya, guava, pears), vegetables, whole grains, legumes, flaxseeds. Drink 2–3 litres of water daily. Exercise regularly — even a 30-minute walk helps. Eat meals at regular times. Respond promptly to the urge to defecate — do not suppress. Warm lemon water in the morning. Prunes or prune juice are highly effective.
+OTC MEDICATIONS: Ispaghula husk (Psyllium/Isabgol) — 1–2 teaspoons in a full glass of water once or twice daily — best long-term option. Lactulose syrup 15–30ml once or twice daily — gentle osmotic laxative. Dulcolax (Bisacodyl) 5mg at bedtime for occasional use only — not for daily use. Glycerin suppositories for immediate relief. Disclaimer: Prolonged laxative use causes dependency — address root cause with diet and hydration.
+SPECIALIST: Gastroenterology for chronic constipation or if associated with blood in stool.
+SEE DOCTOR IF: No response to dietary changes after 2 weeks, constipation alternating with diarrhea, blood in stool, unexplained weight loss, or new onset after age 40.
+---
+ENTRY: Acid Reflux and GERD
+SYMPTOMS: Burning sensation in the chest (heartburn) usually after eating or when lying down, sour or bitter taste in the mouth, regurgitation of food or liquid, difficulty swallowing, chronic cough especially at night, feeling of a lump in the throat, hoarseness in the morning, frequent burping, bloating.
+EMERGENCY SIGNS: Severe chest pain (must rule out heart attack), difficulty swallowing with significant weight loss, vomiting blood or black tarry stool, symptoms not responding to antacids after 2 weeks.
+HOME REMEDIES: Eat small frequent meals rather than large ones. Do not lie down within 3 hours after eating. Elevate the head of the bed by 15–20cm. Avoid trigger foods — spicy, fatty, fried, citrus, tomatoes, coffee, alcohol, chocolate, carbonated drinks. Maintain healthy weight. Wear loose clothing around the waist. Chew food slowly and thoroughly. Cold milk or banana may give immediate relief.
+OTC MEDICATIONS: Antacids (Gelusil, Digene, Eno) for immediate relief — take after meals and at bedtime. Omeprazole 20mg (PPI) once daily before breakfast for 2–4 weeks. Ranitidine 150mg (H2 blocker) twice daily. Disclaimer: Long-term PPI use requires medical supervision. These medications manage symptoms — lifestyle changes are the cure.
+SPECIALIST: Gastroenterology if symptoms persist beyond 4 weeks despite treatment, or for endoscopy evaluation.
+SEE DOCTOR IF: Symptoms more than twice a week despite antacids, difficulty swallowing, unintended weight loss, vomiting blood, or first onset after age 50.
+---
+ENTRY: Appendicitis Warning Signs
+SYMPTOMS: Pain that begins around the navel and then moves to the lower right abdomen (McBurney's point), pain that worsens with movement or coughing, loss of appetite, nausea and vomiting, low-grade fever (37.5–38.5°C), inability to pass gas. Pain typically worsens progressively over 12–24 hours.
+EMERGENCY SIGNS: Appendicitis is a surgical emergency. Sudden worsening of pain that then briefly becomes less severe (may indicate rupture — this is more dangerous, not better). High fever above 38.5°C, severe abdominal rigidity (board-like abdomen), inability to walk upright, signs of sepsis (rapid heart rate, confusion, very high or very low temperature).
+HOME REMEDIES: NONE. Do not apply heat to the abdomen. Do not take laxatives or enemas. Do not eat or drink anything. Go to the emergency department immediately.
+OTC MEDICATIONS: Do not take pain medications before evaluation as they mask symptoms and delay diagnosis. Disclaimer: Appendicitis requires emergency surgery — no home treatment is appropriate.
+SPECIALIST: Emergency Surgery. This is a surgical emergency requiring immediate hospital care.
+SEE DOCTOR IF: Immediately if lower right abdominal pain develops and progresses over a few hours. Do not wait — ruptured appendicitis is life-threatening.
+---
+ENTRY: Headache and Tension Headache
+SYMPTOMS: Dull, aching, steady pain on both sides of the head. Tightness or pressure sensation around forehead, temples, or back of head and neck. Mild to moderate intensity — does not usually worsen with routine activity. Mild sensitivity to light or noise but not both. Not accompanied by nausea. Often triggered by stress, poor posture, eye strain, dehydration, or skipped meals.
+EMERGENCY SIGNS: Sudden thunderclap headache (worst headache of your life — maximal in seconds), headache with stiff neck and fever, headache with confusion or seizure, headache after head injury, headache with visual loss, weakness, or speech problems, progressively worsening headache over days.
+HOME REMEDIES: Rest in a quiet, dark room. Apply cold or warm compress to head and neck. Stay well hydrated — dehydration is a common trigger. Gentle neck and shoulder stretches. Scalp massage. Maintain regular sleep schedule. Limit screen time. Stress management — deep breathing, meditation.
+OTC MEDICATIONS: Paracetamol 500mg–1g every 6 hours (max 4g/day). Ibuprofen 400mg every 8 hours with food. Aspirin 300–600mg (adults only, avoid if stomach issues). Combination products (Paracetamol + Caffeine) such as Saridon or Crocin Advance. Disclaimer: Frequent use of pain medications (more than 10 days/month) causes medication overuse headache — see a doctor.
+SPECIALIST: Neurology for recurrent or chronic headaches.
+SEE DOCTOR IF: Headaches occurring more than 15 days per month, not responding to OTC medications, any emergency signs, first severe headache, or new headache pattern in someone over 50.
+---
+ENTRY: Migraine
+SYMPTOMS: Moderate to severe throbbing or pulsating pain, usually on one side of the head. Often associated with nausea, vomiting, extreme sensitivity to light (photophobia), sound (phonophobia), and sometimes smell. May be preceded by aura — visual disturbances (zigzag lines, blind spots), tingling in face or hands, difficulty speaking. Attacks last 4–72 hours. May cause inability to perform daily activities.
+EMERGENCY SIGNS: First ever migraine (to exclude serious causes), migraine with one-sided weakness or speech problems (migraine with aura vs stroke must be distinguished), migraine lasting more than 72 hours (status migrainous), migraine following head trauma.
+HOME REMEDIES: At the first sign of migraine — take medication and rest in a dark, quiet room. Apply cold pack to forehead or neck. Avoid all screens. Light massage of temples. Sleep if possible. Stay hydrated. Peppermint oil applied to temples may help. Identify and avoid personal triggers — common ones are red wine, aged cheese, strong smells, hormonal changes, stress, bright lights, skipping meals.
+OTC MEDICATIONS: Ibuprofen 400–600mg at onset (most effective migraine OTC). Paracetamol 1g at onset. Aspirin 900mg at onset (adults). Combination of Paracetamol 500mg + Caffeine (Excedrin type). Anti-nausea — Domperidone 10mg or Ondansetron 4mg. Disclaimer: Prescription triptans (Sumatriptan, Rizatriptan) are far more effective for moderate-severe migraines — see a neurologist for a plan.
+SPECIALIST: Neurology for recurrent migraines (more than 4 per month) — preventive treatment reduces frequency significantly.
+SEE DOCTOR IF: More than 4 migraines per month, migraines lasting more than 2 days, OTC medications not working, any neurological symptoms, or increasing frequency of attacks.
+---
+ENTRY: Dizziness and Vertigo
+SYMPTOMS: Vertigo — false sensation of spinning or movement of self or surroundings. Dizziness — lightheadedness, feeling faint, unsteady. Associated symptoms: nausea and vomiting, sweating, nystagmus (eye movement), difficulty walking in a straight line, ear fullness or ringing (tinnitus). Common causes: BPPV (inner ear crystals), Meniere's disease, labyrinthitis, low blood pressure, dehydration, anemia, anxiety.
+EMERGENCY SIGNS: Sudden severe vertigo with double vision, difficulty speaking, weakness in limbs or face, severe headache, or loss of consciousness — may indicate stroke. New onset of sudden severe vertigo in someone over 60 with vascular risk factors needs immediate evaluation.
+HOME REMEDIES: Sit or lie down immediately when dizzy. Move slowly — avoid sudden position changes. Stay hydrated. Epley manoeuvre for BPPV (inner ear repositioning) — can be self-performed if taught by physiotherapist. Avoid bright light and screens during acute episodes. Ginger tea may help associated nausea.
+OTC MEDICATIONS: Cinnarizine 25mg two or three times daily for vertigo. Meclizine (Antivert) 25mg once or twice daily. Domperidone 10mg for associated nausea. Disclaimer: These relieve symptoms but do not treat the cause. Recurrent vertigo needs proper diagnosis.
+SPECIALIST: ENT (otolaryngology) for inner ear causes. Neurology if central cause (stroke, brain issue) is suspected.
+SEE DOCTOR IF: First episode of vertigo, vertigo with any neurological symptoms, vertigo lasting more than 24 hours, recurrent episodes, or associated hearing loss.
+---
+ENTRY: Sudden Severe Headache — Emergency
+SYMPTOMS: Headache described as "the worst headache of my life" reaching maximum intensity within seconds. Thunderclap headache — sudden onset like a clap of thunder. May be accompanied by stiff neck, fever, vomiting, altered consciousness, or sensitivity to light. This pattern is classic for subarachnoid haemorrhage (bleeding in the brain).
+EMERGENCY SIGNS: This headache pattern IS the emergency sign. Any sudden thunderclap headache is a 108 emergency — do not wait to see if it improves.
+HOME REMEDIES: None. Lie still in a quiet dark room while waiting for ambulance. Do not take pain medication before medical evaluation as it may mask diagnosis.
+OTC MEDICATIONS: None. Disclaimer: Pain medications will not treat the underlying cause and may delay life-saving diagnosis.
+SPECIALIST: Emergency Department immediately — Neurosurgery or Neurology. CT scan of head is required urgently.
+SEE DOCTOR IF: Immediately — call 108 now. Do not drive. Do not wait.
+---
+ENTRY: Fever in Adults
+SYMPTOMS: Body temperature above 38°C measured orally. Associated with sweating and chills, headache, muscle aches, weakness and fatigue, loss of appetite, mild dehydration. Fever is a symptom not a disease — the cause must be identified.
+EMERGENCY SIGNS: Temperature above 40°C, fever with stiff neck and headache (possible meningitis), fever with severe rash, fever lasting more than 5 days without clear cause, fever with confusion or seizure, fever in immunocompromised patients, fever after travel to malaria-endemic area.
+HOME REMEDIES: Rest completely. Drink at least 3 litres of fluid — water, ORS, coconut water, soups. Wear light cotton clothing. Apply cool damp cloth to forehead, armpits, and groin. Keep room well ventilated. Do not bundle in blankets. Luke warm sponge bath if very high temperature.
+OTC MEDICATIONS: Paracetamol 500mg–1g every 6 hours (max 4g per day) — first choice. Ibuprofen 400mg every 8 hours with food — alternative, avoid if stomach issues or kidney disease. Do not use Aspirin in patients under 18 years (risk of Reye's syndrome). Disclaimer: If fever exceeds 39°C or persists beyond 3 days, blood tests are needed to identify the cause.
+SPECIALIST: General Medicine for investigation and treatment of underlying cause.
+SEE DOCTOR IF: Fever above 39°C, fever lasting more than 3 days, fever returning after 1–2 days without fever, any emergency signs, or fever in elderly patients over 65.
+---
+ENTRY: Fever with Rash
+SYMPTOMS: Fever accompanied by skin rash — rash may be flat red spots (measles, dengue), raised bumps (chickenpox, allergic reaction), purplish spots that don't blanch on pressure (meningococcal — emergency), target-shaped lesions, or hives.
+EMERGENCY SIGNS: Purplish or dark red spots that do NOT fade when pressed with a glass (non-blanching rash) — this indicates meningococcal disease, a life-threatening emergency. Call 108 immediately. Also emergency: fever with rash and difficulty breathing, rapid spreading rash with high fever, rash covering large body areas with blistering.
+HOME REMEDIES: Cool baths for fever. Calamine lotion for itchy rashes. Loose cotton clothing. Identify and avoid trigger if allergic reaction. Keep rash area clean and dry. Do not scratch — risk of infection.
+OTC MEDICATIONS: Paracetamol 500mg every 6 hours for fever. Cetirizine 10mg for itching if allergic rash. Calamine lotion for skin soothing. Disclaimer: Fever with rash almost always requires medical evaluation to identify the cause — many require specific treatments or are highly contagious.
+SPECIALIST: General Medicine for diagnosis. Dermatology if skin condition is primary. Emergency if non-blanching rash.
+SEE DOCTOR IF: Any fever with rash should be seen within 24 hours. Immediately if rash is non-blanching (does not fade on pressure) or rapidly spreading.
+---
 ENTRY: Urinary Tract Infection (UTI)
-Symptoms: burning or pain during urination, frequent urge to urinate, cloudy/dark or strong-smelling urine, lower abdominal pain, mild fever
-Affected: more common in women
-OTC: cranberry supplements (prevention); phenazopyridine for pain relief only — NOT a cure
-Home Remedies: drink at least 2-3 litres water/day, urinate frequently, avoid holding urine, wipe front to back
-Referral: General Medicine — requires urine culture and prescription antibiotics; do NOT self-medicate antibiotics
-
-ENTRY: Anxiety and Stress Symptoms
-Symptoms: excessive worry, restlessness, difficulty concentrating, irritability, muscle tension, sleep disturbances, palpitations, shortness of breath
-Duration: varies; can be episodic or chronic
-Severity: mild to severe — impacts quality of life
-OTC: no OTC medication recommended without diagnosis
-Home Remedies: deep breathing exercises, regular exercise, adequate sleep (7-8 hours), limit caffeine and alcohol, mindfulness meditation
-When to see doctor: symptoms lasting more than 2 weeks, interference with daily life, panic attacks, thoughts of self-harm
-Referral: General Medicine initially; may refer to Psychiatry or Psychology
+SYMPTOMS: Burning or stinging pain during urination (dysuria), frequent and urgent need to urinate with small amounts passed, cloudy, dark, or strong-smelling urine, lower abdominal pain or pressure (suprapubic), mild fever. More common in women. Blood in urine (haematuria) may occur. In men, UTI is less common and warrants investigation for underlying cause.
+EMERGENCY SIGNS: High fever above 38.5°C with chills and shaking (suggests kidney infection — pyelonephritis), severe back or flank pain, nausea and vomiting, confusion especially in elderly, UTI symptoms in pregnant women require immediate treatment.
+HOME REMEDIES: Drink 2–3 litres of water per day — flushes bacteria from urinary tract. Urinate every 2–3 hours — do not hold urine. Avoid bladder irritants — caffeine, alcohol, spicy food, carbonated drinks. Apply warm compress to lower abdomen for comfort. Wipe front to back after toilet use. Urinate after sexual intercourse. Unsweetened cranberry juice or D-mannose supplements may help prevention.
+OTC MEDICATIONS: Phenazopyridine (Pyridium) 200mg three times daily after meals — relieves burning and urgency (turns urine orange — this is normal). Note: this is only a pain reliever, NOT an antibiotic. ORS if feverish. Disclaimer: UTI requires prescription antibiotics (typically Nitrofurantoin, Trimethoprim, or Fosfomycin) confirmed by urine culture. Do not self-prescribe antibiotics — leads to resistance.
+SPECIALIST: General Medicine for antibiotic prescription and urine culture. Urology if recurrent UTIs (more than 3 per year) or UTI in men.
+SEE DOCTOR IF: Immediately if fever and back pain (kidney infection). Within 24 hours for symptoms of simple UTI — antibiotics are needed. Symptoms should improve within 48 hours of starting antibiotics.
+---
+ENTRY: Dengue Fever Warning Signs
+SYMPTOMS: Sudden high fever (39–40°C) lasting 2–7 days, severe headache especially behind the eyes (retro-orbital pain), severe joint and muscle pain (dengue is called "breakbone fever"), skin rash appearing 3–4 days after fever, mild bleeding — easy bruising, nosebleeds, bleeding gums, fatigue, nausea, vomiting, loss of appetite.
+EMERGENCY SIGNS: Dengue warning signs — severe abdominal pain, persistent vomiting more than 3 times in 24 hours, rapid breathing, bleeding from gums or nose, blood in vomit or stool, restlessness or extreme fatigue and weakness, cold clammy skin (dengue shock syndrome). Platelet count falling rapidly below 50,000 is serious.
+HOME REMEDIES: Complete bed rest. Drink 2–3 litres of fluid daily — ORS, coconut water, papaya leaf juice (helps raise platelet count — evidence limited but widely used). Sponge bath for high fever. Paracetamol ONLY for fever — absolutely NO aspirin or ibuprofen (increases bleeding risk). Monitor for warning signs closely.
+OTC MEDICATIONS: Paracetamol 500mg–1g every 6 hours ONLY for fever. STRICTLY AVOID aspirin, ibuprofen, naproxen, and all NSAIDs — these increase risk of dangerous bleeding. Disclaimer: No specific antiviral treatment for dengue exists. Management is supportive. Hospitalisation is needed for dengue with warning signs.
+SPECIALIST: General Medicine immediately for dengue test (NS1 antigen, dengue IgM/IgG). Hospitalisation if warning signs or platelet count below 100,000.
+SEE DOCTOR IF: Within 24 hours of suspected dengue — early testing is critical. Immediately if any warning signs develop.
+---
+ENTRY: Typhoid Symptoms
+SYMPTOMS: Gradual onset of sustained high fever that rises step-wise over 3–5 days (39–40°C), headache, fatigue and weakness, poor appetite, abdominal pain especially in the right lower quadrant, constipation in early stages then diarrhea, rose-coloured spots on trunk (rose spots) in some cases, coated tongue, enlarged spleen or liver.
+EMERGENCY SIGNS: Intestinal perforation (sudden severe abdominal pain with rigidity — surgical emergency), intestinal bleeding (blood in stool), encephalopathy (confusion, delirium), high fever above 40°C persisting despite treatment, signs of sepsis.
+HOME REMEDIES: Complete bed rest. Drink at least 3 litres of boiled or filtered water daily. Eat small meals of easily digestible food — soft rice, boiled vegetables, banana, curd. Strict hygiene — wash hands thoroughly, use boiled water and fresh cooked food. Paracetamol for fever. Avoid raw vegetables, street food, and unboiled water.
+OTC MEDICATIONS: Paracetamol 500mg–1g every 6 hours for fever. ORS for hydration. Disclaimer: Typhoid requires prescription antibiotics (Azithromycin or Cefixime) confirmed by Widal test or blood culture. This is not self-treatable — see a doctor urgently.
+SPECIALIST: General Medicine urgently. Hospitalisation for severe cases or complications.
+SEE DOCTOR IF: Immediately if typhoid is suspected — fever lasting more than 3 days without clear cause, especially if contaminated water or food was consumed.
+---
+ENTRY: Back Pain
+SYMPTOMS: Dull aching or sharp pain in lower, middle, or upper back. Stiffness and limited range of motion. Pain may radiate down one or both legs (sciatica — typically below knee). Muscle spasm. Pain worsening with prolonged sitting, bending, or lifting. May be acute (sudden onset, days) or chronic (more than 12 weeks). Most common cause is muscle strain from overexertion or poor posture.
+EMERGENCY SIGNS: Back pain with bladder or bowel dysfunction (inability to urinate or control bladder/bowel) — cauda equina syndrome, a surgical emergency. Back pain with fever and weight loss (possible infection or malignancy). Back pain following significant trauma. Pain with progressive leg weakness or numbness.
+HOME REMEDIES: Continue gentle activity — strict bed rest worsens recovery. Apply ice pack for first 48–72 hours (acute injury), then switch to heat. Gentle stretching — knee-to-chest stretch, cat-cow stretch. Correct posture — ergonomic chair, monitor at eye level. Sleep on firm mattress, use pillow between knees if side sleeping. Weight management. Core strengthening exercises when pain subsides.
+OTC MEDICATIONS: Ibuprofen 400mg three times daily with food (max 1200mg per day) — most effective for back pain due to anti-inflammatory action. Paracetamol 500mg–1g every 6 hours for mild pain. Diclofenac gel (Voltaren/Voveran) applied topically 3–4 times daily. Disclaimer: Muscle relaxants (Thiocolchicoside, Methocarbamol) require prescription. Long-term NSAID use needs medical supervision.
+SPECIALIST: Orthopaedics or Spine specialist for chronic back pain. Physiotherapy is highly effective and should be started early.
+SEE DOCTOR IF: Pain not improving after 4–6 weeks, radiating leg pain with weakness or numbness, any bladder or bowel changes (emergency), back pain after age 50 with first episode, or pain with fever.
+---
+ENTRY: Joint Pain and Arthritis
+SYMPTOMS: Pain, swelling, stiffness, and reduced range of motion in one or more joints. Warmth and redness over affected joint. Morning stiffness lasting more than 30 minutes (suggests inflammatory arthritis). Common sites: knees, hips, hands, fingers, wrists, spine. Types: Osteoarthritis (wear and tear, older adults), Rheumatoid Arthritis (autoimmune, younger adults, symmetrical), Gout (sudden severe pain, usually big toe, with swelling and redness).
+EMERGENCY SIGNS: Sudden severely hot, red, swollen joint — possible septic arthritis (joint infection, a surgical emergency). Fever with joint swelling — needs immediate evaluation. Gout attack with fever — infection must be excluded.
+HOME REMEDIES: Rest the joint during acute flare. Apply ice pack 20 minutes several times daily for acute inflammation. Apply heat for chronic stiffness. Elevate swollen limb. Gentle range-of-motion exercises to maintain mobility. Weight loss for knee and hip osteoarthritis — each kilogram lost reduces knee load by 4 kilograms. Swimming and water exercises are low-impact and highly effective.
+OTC MEDICATIONS: Ibuprofen 400mg three times daily with food for inflammation and pain. Paracetamol 500mg–1g every 6 hours for pain without significant inflammation. Diclofenac gel or cream for topical application. Glucosamine 1500mg daily — may help osteoarthritis (evidence moderate). Disclaimer: Rheumatoid arthritis and gout require specific prescription medications. Do not self-treat chronic joint disease.
+SPECIALIST: Orthopaedics for osteoarthritis and joint assessment. Rheumatology for suspected rheumatoid arthritis, gout, or autoimmune arthritis.
+SEE DOCTOR IF: Joint pain lasting more than 6 weeks, morning stiffness over 30 minutes, swelling and redness in joints without injury, multiple joint involvement, or any sudden severely hot and swollen joint (emergency).
+---
+ENTRY: Muscle Pain
+SYMPTOMS: Aching, soreness, or tightness in muscles. Tenderness to touch. May have swelling in the area. Pain worsens with movement of affected muscle. Common after exercise (delayed onset muscle soreness — DOMS, appears 24–48 hours after), overexertion, poor posture, stress, dehydration, or as a symptom of flu or viral illness.
+EMERGENCY SIGNS: Severe muscle pain with dark brown or cola-coloured urine after intense exercise (rhabdomyolysis — muscle breakdown, a medical emergency requiring urgent IV fluids). Sudden severe muscle pain with weakness after starting statins. Muscle pain with high fever and breathing difficulty.
+HOME REMEDIES: Rest the affected muscle. Apply ice pack for first 24–48 hours for acute injury (20 minutes on, 20 minutes off). Apply heat after 48 hours to relax muscle. Gentle stretching and massage. Elevate limb if swollen. Adequate hydration. Epsom salt (magnesium sulphate) bath for general muscle soreness. RICE — Rest, Ice, Compression, Elevation for injuries.
+OTC MEDICATIONS: Ibuprofen 400mg three times daily with food. Paracetamol 500mg–1g every 6 hours. Topical diclofenac gel or ibuprofen gel. Muscle pain spray (Volini, Moov). Disclaimer: Muscle relaxants require prescription. Statins can cause muscle pain — report to prescribing doctor.
+SPECIALIST: Sports Medicine or Physiotherapy for exercise-related injuries. General Medicine for unexplained diffuse muscle pain.
+SEE DOCTOR IF: Muscle pain lasting more than 2 weeks without clear cause, dark urine after exercise (emergency), muscle weakness with pain, pain with fever, or pain starting after new medication.
+---
+ENTRY: Tooth Pain
+SYMPTOMS: Constant or intermittent sharp, throbbing, or aching pain in or around a tooth. Sensitivity to hot and cold foods and drinks. Swelling of gum or cheek around the tooth. Tenderness when biting or chewing. Bad taste or smell from the tooth or gum. Pain that wakes from sleep (suggests pulpitis or abscess).
+EMERGENCY SIGNS: Swelling extending to the face, jaw, or neck — dental abscess spreading to airway is life-threatening. Difficulty opening mouth or swallowing. Fever with jaw swelling. These require emergency dental or ENT care.
+HOME REMEDIES: Rinse with warm salt water (1/2 teaspoon salt in 1 cup warm water) several times daily. Clove oil applied directly to the tooth or gum — natural anaesthetic. Cold compress on cheek for swelling (20 minutes on, off). Avoid hot or cold foods that trigger pain. Avoid sugary foods. Garlic paste on the tooth (natural antibacterial). Keep head elevated when sleeping.
+OTC MEDICATIONS: Ibuprofen 400mg every 8 hours with food — most effective OTC for dental pain (anti-inflammatory). Paracetamol 500mg–1g every 6 hours for pain relief. Benzocaine gel (Orajel) applied to gum for local numbing. Disclaimer: OTC medications provide temporary relief only. Tooth pain indicates a dental problem (decay, abscess, cracked tooth) that requires dental treatment. No medication cures the underlying problem.
+SPECIALIST: Dentist — urgently if abscess or swelling. Emergency Department if swelling spreading to face, jaw, or neck.
+SEE DOCTOR IF: Within 24–48 hours for any significant tooth pain. Immediately if facial swelling, fever, or difficulty swallowing.
+---
+ENTRY: Allergic Reaction and Hives
+SYMPTOMS: Skin rash (hives — raised, red, itchy welts that appear and disappear), itching, redness, swelling especially of lips, eyelids, or face, runny nose, watery and itchy eyes, sneezing. Reactions may occur within minutes to hours of exposure to trigger (food, medication, insect sting, latex, pollen).
+EMERGENCY SIGNS: Anaphylaxis is life-threatening — call 108 immediately if: throat or tongue swelling making breathing difficult, severe difficulty breathing or wheezing, sudden drop in blood pressure (feeling faint, confusion, pale), rapid weak pulse, loss of consciousness. Epinephrine (adrenaline) auto-injector (EpiPen) if prescribed and available — use immediately.
+HOME REMEDIES: Remove or avoid the trigger. Cool compress on itchy skin. Loose cotton clothing. Oatmeal bath for widespread itching. Keep nails short to avoid scratching. For mild rash — calamine lotion. Stay calm — anxiety can worsen symptoms.
+OTC MEDICATIONS: Cetirizine 10mg once daily (non-drowsy) for mild allergic reaction and hives. Loratadine 10mg once daily (non-drowsy). Chlorpheniramine 4mg every 6 hours (older antihistamine, causes drowsiness). Calamine lotion for skin rash. Disclaimer: Severe allergic reactions require emergency care and injectable adrenaline — OTC antihistamines are insufficient for anaphylaxis.
+SPECIALIST: Allergist or Immunologist for allergy testing and identification of specific triggers. Carry Epipen if previously had anaphylaxis.
+SEE DOCTOR IF: Any throat swelling, breathing difficulty, or feeling faint — call 108 immediately (anaphylaxis). For moderate hives — within 24 hours. For recurrent unexplained hives — allergy specialist.
+---
+ENTRY: Minor Burns
+SYMPTOMS: First-degree burns — red, painful, dry skin without blisters (like sunburn). Second-degree burns — red, painful, moist skin with blisters, possible swelling. Third-degree burns — white, leathery, or charred skin, may be painless due to nerve damage (medical emergency).
+EMERGENCY SIGNS: Burns covering large areas, burns on face, hands, feet, genitals, or over joints, third-degree burns (white, charred, painless), chemical or electrical burns, burns with difficulty breathing (inhalation injury), burns in children, elderly, or immunocompromised.
+HOME REMEDIES: Cool the burn immediately — hold under cool (not cold, not ice) running water for 10–20 minutes. This is the single most important first-aid step. Cover with a clean non-fluffy cloth or cling film (not cotton wool). Elevate the burned area if possible. Do NOT apply toothpaste, butter, oil, ice, or any home remedies to burns — these cause harm. Do NOT burst blisters. Do NOT remove clothing stuck to burn.
+OTC MEDICATIONS: Paracetamol 500mg–1g for pain. Ibuprofen 400mg for pain and inflammation. Silver sulfadiazine cream (SSD) — requires prescription for burns. For very minor first-degree burns — aloe vera gel provides cooling comfort. Disclaimer: Second-degree burns larger than a palm and all third-degree burns require hospital care.
+SPECIALIST: Emergency Department for significant burns. Burns Unit for extensive or complex burns.
+SEE DOCTOR IF: Any second-degree burn larger than 3cm, any burn on face or hands, electrical or chemical burn, burn with smoke inhalation, burn in children or elderly, any sign of infection (increasing pain, redness spreading, pus, fever after 48 hours).
+---
+ENTRY: Wound Infection Signs
+SYMPTOMS: Clean wounds typically heal within 5–10 days. Signs of infection developing 24–72 hours after injury: increasing (not decreasing) pain around wound, redness spreading beyond wound edge, warmth around wound, swelling, pus or cloudy discharge, wound has bad odour, patient develops fever.
+EMERGENCY SIGNS: Red streaks extending from wound towards the body (tracking — indicates spreading infection through lymphatics), high fever above 39°C with wound infection, rapidly spreading redness and extreme tenderness (necrotising fasciitis — a rapidly fatal surgical emergency), wound over a joint with inability to move the joint, tetanus risk from deep puncture wounds in unvaccinated patients.
+HOME REMEDIES: Clean wound immediately with cool running water for 5–10 minutes. Apply gentle antiseptic — diluted Betadine or saline. Cover with sterile dressing — change daily. Keep wound dry. Do not remove scab — it is protective. Watch closely for infection signs.
+OTC MEDICATIONS: Povidone-iodine (Betadine) solution for wound cleaning. Antiseptic cream (Bacitracin, Neosporin, Soframycin) for minor wounds. Paracetamol or ibuprofen for pain. Disclaimer: Infected wounds require prescription antibiotics. Do not use iodine on large open wounds — impairs healing.
+SPECIALIST: General Medicine or Surgery for infected wounds. Emergency if red streaks, high fever, or rapidly spreading infection.
+SEE DOCTOR IF: Any sign of infection (as above), wound from animal bite (rabies risk), deep puncture wound, wound not healing after 2 weeks, or patient not vaccinated against tetanus within 5 years.
+---
+ENTRY: High Blood Sugar — Hyperglycaemia
+SYMPTOMS: Excessive thirst (polydipsia), frequent urination especially at night (polyuria), fatigue and weakness, blurred vision, headache, slow-healing wounds and cuts, recurrent infections (skin, urinary, fungal), unexplained weight loss (Type 1), fruity or acetone smell on breath (diabetic ketoacidosis — emergency).
+EMERGENCY SIGNS: Diabetic ketoacidosis (DKA) — fruity breath, rapid deep breathing, severe abdominal pain, vomiting, confusion, very high blood glucose (above 300mg/dL). Hyperosmolar hyperglycaemic state (HHS) — extreme thirst, confusion, very high blood glucose (above 600mg/dL) in Type 2 diabetics. Both are life-threatening emergencies.
+HOME REMEDIES: Monitor blood glucose regularly. Drink water — hydration helps lower blood glucose. Light walking if feeling well — exercise lowers blood glucose. Avoid sugar, white rice, white bread, sugary drinks, fried food. Eat vegetables, fibre, and lean protein. Maintain medication schedule — never stop insulin or oral diabetes medications.
+OTC MEDICATIONS: No OTC medication lowers blood glucose. Disclaimer: Diabetes management requires prescription medication (Metformin, Glipizide, Insulin). Never adjust insulin dose without doctor guidance. Never skip diabetes medications.
+SPECIALIST: General Medicine or Endocrinology for diabetes management. Diabetologist for complex cases.
+SEE DOCTOR IF: Blood glucose consistently above 200mg/dL, any DKA symptoms (fruity breath, rapid breathing, confusion) — call 108. Annual eye, kidney, and foot check for all diabetics.
+---
+ENTRY: Low Blood Sugar — Hypoglycaemia Emergency
+SYMPTOMS: Blood glucose below 70mg/dL. Early symptoms: shakiness, sweating, rapid heartbeat, pale skin, intense hunger, dizziness, headache, irritability, difficulty concentrating, weakness. Severe symptoms: confusion, slurred speech, inability to walk, seizures, loss of consciousness.
+EMERGENCY SIGNS: Any confusion, inability to swallow, seizure, or loss of consciousness from hypoglycaemia — call 108 immediately. This is a medical emergency that can cause brain damage or death within minutes if untreated.
+HOME REMEDIES — IMMEDIATE TREATMENT (Rule of 15): If conscious and able to swallow — give 15 grams of fast-acting sugar immediately: 3–4 glucose tablets, or 4 teaspoons of sugar dissolved in water, or 150ml of fruit juice or regular soft drink (not diet), or 1 tablespoon of honey. Wait 15 minutes. Recheck glucose. If still below 70mg/dL — repeat. Once glucose above 100mg/dL — give a small snack (biscuits with peanut butter, cheese and crackers) to prevent recurrence.
+OTC MEDICATIONS: Glucose tablets — keep always available. Glucagon injection kit (GlucaGen) — for severe hypoglycaemia in unconscious patients, requires prescription and training. Disclaimer: If unconscious — do NOT give anything by mouth. Call 108. If prescribed — use glucagon injection.
+SPECIALIST: Endocrinology or General Medicine to review and adjust diabetes medication to prevent recurrence.
+SEE DOCTOR IF: Any severe hypoglycaemia episode (confusion, seizure, loss of consciousness) — inform doctor even after recovery. Frequent mild hypoglycaemia (more than 2 episodes per week) — medication adjustment needed.
+---
+ENTRY: Diabetic Foot Warning Signs
+SYMPTOMS: Numbness, tingling, or burning sensation in feet (diabetic neuropathy), reduced sensation to heat, cold, or pain, dry cracked skin on feet, calluses, any sore, blister, or wound on feet that heals slowly or not at all, redness, warmth, or swelling around a foot wound, unusual odour from foot wound, discolouration (dark or black areas — tissue death).
+EMERGENCY SIGNS: Any foot wound that is not healing after 2 weeks. Red streaks from wound. High fever with foot infection. Black or dark purple discolouration (gangrene). Swelling and extreme warmth of entire foot. These are surgical emergencies — delay causes amputation.
+HOME REMEDIES: Inspect both feet every day — use a mirror for the sole. Wash feet daily with lukewarm water and mild soap. Dry thoroughly especially between toes. Apply moisturiser to heels and soles (not between toes). Wear well-fitting diabetic footwear — never walk barefoot. Cut toenails straight across — do not cut corners. Keep blood glucose well controlled.
+OTC MEDICATIONS: Antifungal powder (Clotrimazole, Miconazole) between toes if fungal infection. Disclaimer: Never self-treat a diabetic foot wound — it can progress to gangrene requiring amputation. See a doctor for any break in skin on a diabetic foot.
+SPECIALIST: Diabetologist and Vascular Surgery for foot complications. Podiatry for ongoing foot care. Wound care specialist for non-healing wounds.
+SEE DOCTOR IF: Any wound, sore, or blister on a diabetic foot — within 24 hours regardless of how minor it appears. Any signs of infection — immediately.
+---
+ENTRY: Anxiety Symptoms
+SYMPTOMS: Excessive, uncontrollable worry about multiple things, restlessness and feeling on edge, difficulty concentrating, irritability, muscle tension especially in neck and shoulders, sleep disturbances (trouble falling or staying asleep), fatigue, headaches, palpitations, shortness of breath, sweating, dry mouth, nausea, frequent need to urinate. Anxiety often mimics physical symptoms.
+EMERGENCY SIGNS: Thoughts of self-harm or suicide — call VANDREVALA Foundation helpline 1860-2662-345 (24/7 India) or go to nearest emergency department. Severe panic attack with chest pain — first rule out cardiac cause. Complete inability to function in daily life.
+HOME REMEDIES: Diaphragmatic breathing — breathe in slowly for 4 counts through nose, hold for 2, breathe out for 6 through mouth. Progressive muscle relaxation — tense and release muscle groups from feet to head. Regular aerobic exercise 30 minutes 5 days a week — as effective as medication for mild anxiety. Limit caffeine and alcohol — both worsen anxiety. Maintain regular sleep schedule. Practice mindfulness meditation — apps like Headspace or Calm. Journaling — write down worries and challenge them. Social support — talk to a trusted friend or family member.
+OTC MEDICATIONS: No OTC medications recommended for anxiety treatment. Disclaimer: Benzodiazepines (Alprazolam, Clonazepam) and SSRIs (Sertraline, Escitalopram) require prescription — these are effective but need medical supervision. Do not self-medicate with prescription medication obtained without doctor evaluation.
+SPECIALIST: General Medicine for initial assessment and to exclude medical causes. Psychiatry or Clinical Psychology for evidence-based treatment — Cognitive Behavioural Therapy (CBT) is highly effective.
+SEE DOCTOR IF: Symptoms lasting more than 2 weeks, interfering with work or relationships, accompanied by depression, panic attacks, or any thoughts of self-harm.
+---
+ENTRY: Panic Attack vs Heart Attack
+SYMPTOMS: Panic attack — sudden intense fear with racing heart, chest tightness, shortness of breath, dizziness, tingling in hands or around mouth, feeling of unreality, sweating, chills, fear of dying or losing control. Peaks within 10 minutes. Usually resolves within 20–30 minutes. Often triggered by stress, but may come "out of the blue."
+Heart attack — chest pain that may radiate to left arm, jaw, or back, shortness of breath, cold sweat, nausea, grey or ashen skin colour, persistent and often progressive over time, not quickly resolving. May occur at rest or with exertion. More common with cardiac risk factors (age over 40, hypertension, diabetes, smoking, family history).
+EMERGENCY SIGNS: If in doubt — treat as heart attack and call 108. You cannot reliably distinguish a panic attack from a heart attack without ECG and blood tests. Erring on the side of caution is always correct.
+HOME REMEDIES: For known panic attacks — STOP (Stop what you are doing, Take a breath, Observe what you feel, Proceed with slow breathing). Grounding technique: name 5 things you can see, 4 you can hear, 3 you can touch, 2 you can smell, 1 you can taste. Breathe slowly into a bag (re-breathing) for dizziness from over-breathing.
+OTC MEDICATIONS: None safe to self-administer during acute panic or potential cardiac event. Disclaimer: After ruling out cardiac cause by a doctor, discuss ongoing panic attack management — CBT and selective SSRIs are first-line treatments.
+SPECIALIST: Emergency Department if first episode or uncertain. Cardiology to rule out cardiac cause. Psychiatry or Psychology for confirmed panic disorder.
+SEE DOCTOR IF: First episode of panic attack (to exclude cardiac cause). Panic attacks occurring more than once a month. Panic attacks changing lifestyle or causing avoidance behaviour. Any cardiac risk factor and chest pain — call 108 immediately.
+---
+ENTRY: When to Seek Immediate Mental Health Help
+SYMPTOMS: Thoughts of harming yourself or others, plans to end your life, hearing voices or seeing things others cannot see, severe confusion or inability to recognize familiar people or surroundings, complete inability to care for yourself (not eating, not sleeping for days), extreme agitation or aggression that cannot be calmed, severe depression with complete withdrawal from all activities.
+EMERGENCY SIGNS: Any active suicidal thoughts with a plan is a psychiatric emergency — do not leave the person alone. These situations require immediate professional intervention.
+HOME REMEDIES: Ensure safety first — remove access to potentially harmful items. Stay with the person. Listen without judgment. Do not promise to keep suicidal thoughts secret. Call a mental health helpline — VANDREVALA Foundation: 1860-2662-345 (24/7 free). iCall: 9152987821.
+OTC MEDICATIONS: None. Disclaimer: Never self-medicate for severe psychiatric emergencies. Do not give sedatives to an agitated person without medical guidance.
+SPECIALIST: Psychiatry — Emergency Psychiatric Unit. All major hospitals in India including Kauvery Hospital have psychiatric support services.
+SEE DOCTOR IF: Immediately for any of the above. Call 108 if person is a danger to themselves or others. Call helpline for immediate telephone support while seeking care.
