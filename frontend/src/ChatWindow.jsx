@@ -65,6 +65,19 @@ function EmergencyDoctorCard({ doctor, onBook }) {
   )
 }
 
+/* ── Message text renderer ────────────────────────────── */
+function renderMessageText(text) {
+  return text.split('\n').map((line, i) => {
+    if (line.startsWith('💊') || line.startsWith('🏠'))
+      return <div key={i} style={{ fontWeight: 'bold', fontSize: '0.95rem', marginTop: '10px' }}>{line}</div>
+    if (line.startsWith('•'))
+      return <div key={i} style={{ paddingLeft: '16px', margin: '2px 0' }}>{line}</div>
+    if (line.trim() === '')
+      return <div key={i} style={{ height: '6px' }} />
+    return <div key={i}>{line}</div>
+  })
+}
+
 /* ── Sub-components ───────────────────────────────────── */
 function TypingIndicator() {
   return (
@@ -93,7 +106,7 @@ function Bubble({ msg, showLabel }) {
     fontSize: 14,
     lineHeight: 1.55,
     wordBreak: 'break-word',
-    whiteSpace: 'pre-wrap',
+    whiteSpace: isUser ? 'pre-wrap' : 'normal',
   }
 
   let prefix = ''
@@ -126,7 +139,9 @@ function Bubble({ msg, showLabel }) {
       {!isUser && showLabel && (
         <span style={{ fontSize: 11, color: '#666', fontWeight: 600, marginLeft: 4 }}>Medibot</span>
       )}
-      <div style={bubbleStyle}>{prefix}{msg.content}</div>
+      <div style={bubbleStyle}>
+        {isUser ? `${prefix}${msg.content}` : <>{prefix}{renderMessageText(msg.content)}</>}
+      </div>
       <span style={{ fontSize: 10, color: '#bbb', marginTop: 1, marginLeft: isUser ? 0 : 4 }}>
         {fmt(msg.timestamp)}
       </span>
