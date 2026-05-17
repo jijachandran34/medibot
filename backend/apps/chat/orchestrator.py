@@ -101,6 +101,116 @@ def _get_emergency_doctor():
     return None
 
 
+def _check_existing_appointment(patient_mobile):
+    """Return the next active future Appointment for this mobile, or None."""
+    from datetime import date
+    from apps.patients.models import Patient
+    from .models import Appointment
+    try:
+        patient = Patient.objects.get(mobile=patient_mobile)
+    except Patient.DoesNotExist:
+        return None
+    return (
+        Appointment.objects
+        .select_related('doctor__department', 'slot')
+        .filter(patient=patient, slot__date__gte=date.today(), slot__is_booked=True, status='active')
+        .order_by('slot__date', 'slot__time')
+        .first()
+    )
+
+
+def _reschedule_appointment(conversation, context_updates):
+    """Free old slot, create new Appointment, return new appt_ref or None."""
+    new_slot_id = context_updates.get('reschedule_slot_id')
+    if not new_slot_id:
+        return None
+
+    from apps.doctors.models import Slot
+    from .models import Appointment
+
+    old_appt_id = conversation.context.get('existing_appointment', {}).get('id')
+    if not old_appt_id:
+        logger.error("Reschedule: no existing_appointment in context.")
+        return None
+
+    try:
+        old_appt = Appointment.objects.select_related('slot').get(pk=old_appt_id)
+        new_slot = Slot.objects.select_related('doctor__department').get(pk=int(new_slot_id))
+    except (Appointment.DoesNotExist, Slot.DoesNotExist, ValueError, TypeError):
+        logger.error("Reschedule failed: old_appt=%s new_slot=%s", old_appt_id, new_slot_id)
+        return None
+
+    if new_slot.is_booked:
+        logger.warning("Reschedule: new slot %s already booked.", new_slot_id)
+        return None
+
+    # Free old slot and mark old appointment rescheduled
+    old_appt.slot.is_booked = False
+    old_appt.slot.save(update_fields=['is_booked'])
+    old_appt.status = 'rescheduled'
+    old_appt.save(update_fields=['status'])
+
+    # Book new slot and create new appointment
+    new_slot.is_booked = True
+    new_slot.save(update_fields=['is_booked'])
+
+    new_appt = Appointment.objects.create(
+        patient=old_appt.patient,
+        doctor=new_slot.doctor,
+        slot=new_slot,
+        reason=old_appt.reason,
+        status='active',
+    )
+
+    appt_ref = f"KH{new_appt.pk:05d}"
+    conversation.context['appointment_ref'] = appt_ref
+    conversation.context.pop('existing_appointment', None)
+    conversation.save(update_fields=['context'])
+    logger.info("Rescheduled: appt #%s → new appt #%s (%s)", old_appt.pk, new_appt.pk, appt_ref)
+    return appt_ref
+
+
+def _cancel_appointment(conversation, context_updates):
+    """Mark existing appointment cancelled, free slot. Returns True on success."""
+    if not context_updates.get('cancel_appointment'):
+        return False
+
+    from .models import Appointment
+
+    old_appt_id = conversation.context.get('existing_appointment', {}).get('id')
+    if not old_appt_id:
+        logger.error("Cancel: no existing_appointment in context.")
+        return False
+
+    try:
+        appt = Appointment.objects.select_related('slot').get(pk=old_appt_id)
+    except Appointment.DoesNotExist:
+        logger.error("Cancel: appointment %s not found.", old_appt_id)
+        return False
+
+    appt.slot.is_booked = False
+    appt.slot.save(update_fields=['is_booked'])
+    appt.status = 'cancelled'
+    appt.save(update_fields=['status'])
+
+    conversation.context.pop('existing_appointment', None)
+    conversation.save(update_fields=['context'])
+    logger.info("Appointment #%s cancelled.", appt.pk)
+    return True
+
+
+def _get_manage_appointment_quick_replies(conversation):
+    """Return context-aware quick replies for the manage_appointment state."""
+    sub = conversation.context.get('manage_sub_state', '')
+    if sub == 'modify':
+        return ["🔄 Reschedule", "❌ Cancel appointment"]
+    if sub == 'reschedule':
+        return _get_booking_quick_replies()
+    if sub == 'cancel':
+        return ["✅ Yes, cancel my appointment", "⬅️ No, go back"]
+    return ["📅 Modify existing appointment", "➕ Book new appointment"]
+
+
 def _lookup_patient_by_mobile(message_text):
     """Extract a 10-digit mobile number from message_text and return matching Patient or None."""
     import re
@@ -217,7 +327,7 @@ def handle_message(conversation, user_message_text):
     # Build context to inject into system prompt
     if conversation.state in ('symptoms', 'triage'):
         rag_context = query_rag(user_message_text)
-    elif conversation.state == 'booking':
+    elif conversation.state in ('booking', 'manage_appointment'):
         rag_context = _get_available_slots_text()
     else:
         rag_context = ''
@@ -250,16 +360,47 @@ def handle_message(conversation, user_message_text):
         logger.warning("Claude returned unknown next_state %r — keeping current.", next_state)
         next_state = conversation.state
 
+    # Track state before update so we can detect transitions
+    prev_state = conversation.state
+
     # Persist state and context changes
     conversation.state = next_state
     if isinstance(context_updates, dict) and context_updates:
         conversation.context.update(context_updates)
+
+    # Intercept identify → emergency_check: check for existing future appointments
+    if prev_state == 'identify' and next_state == 'emergency_check':
+        patient_mobile = conversation.context.get('patient_mobile')
+        if patient_mobile:
+            existing_appt = _check_existing_appointment(patient_mobile)
+            if existing_appt:
+                conversation.context['existing_appointment'] = {
+                    'id':         existing_appt.pk,
+                    'ref':        f"KH{existing_appt.pk:05d}",
+                    'doctor':     f"Dr. {existing_appt.doctor.name}",
+                    'department': existing_appt.doctor.department.name,
+                    'date':       existing_appt.slot.date.strftime('%d %b %Y'),
+                    'time':       existing_appt.slot.time.strftime('%I:%M %p').lstrip('0'),
+                }
+                next_state = 'manage_appointment'
+                conversation.state = 'manage_appointment'
+                logger.info("Existing appointment found — routing to manage_appointment.")
+
     conversation.save(update_fields=['state', 'context'])
 
     # Create appointment if booking just confirmed
     appt_ref = None
     if isinstance(context_updates, dict) and 'booked_slot_id' in context_updates:
         appt_ref = _create_appointment_if_booked(conversation, context_updates)
+
+    # Handle reschedule or cancel in manage_appointment state
+    reschedule_ref = None
+    cancelled = False
+    if isinstance(context_updates, dict):
+        if 'reschedule_slot_id' in context_updates:
+            reschedule_ref = _reschedule_appointment(conversation, context_updates)
+        elif context_updates.get('cancel_appointment'):
+            cancelled = _cancel_appointment(conversation, context_updates)
 
     # Resolve emergency doctor when emergency is confirmed and moving to booking
     emergency_doctor = None
@@ -270,11 +411,17 @@ def handle_message(conversation, user_message_text):
     clean_reply = _clean_response(raw_reply)
     if appt_ref:
         clean_reply += f"\n\n📋 Your appointment reference number is: **{appt_ref}**\nPlease save this for future reference."
+    if reschedule_ref:
+        clean_reply += f"\n\n📋 Your new appointment reference number is: **{reschedule_ref}**\nPlease save this for future reference."
+    if cancelled:
+        clean_reply += "\n\n✅ Your appointment has been successfully cancelled."
     Message.objects.create(
         conversation=conversation, role='assistant', content=clean_reply
     )
 
-    if next_state == 'booking' or conversation.state == 'booking':
+    if next_state == 'manage_appointment':
+        quick_replies = _get_manage_appointment_quick_replies(conversation)
+    elif next_state == 'booking':
         quick_replies = _get_booking_quick_replies()
     else:
         quick_replies = QUICK_REPLIES.get(next_state, [])
