@@ -21,7 +21,7 @@ export default function ChatWidget({ isOpen, onToggle, hasUnread }) {
           color: '#fff',
           border: 'none',
           cursor: 'pointer',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          display: isOpen ? 'none' : 'flex', alignItems: 'center', justifyContent: 'center',
           boxShadow: '0 4px 20px rgba(0,102,204,0.45)',
           transition: 'transform 0.2s, box-shadow 0.2s',
         }}
