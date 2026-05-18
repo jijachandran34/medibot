@@ -19,6 +19,27 @@ QUICK_REPLIES = {
     'triage':          ["Book an appointment", "No thanks"],
 }
 
+BUTTON_RESPONSES = {
+    '📅 Modify existing appointment': {
+        'reply':         'How would you like to modify your appointment?',
+        'quick_replies': ['🔄 Reschedule', '❌ Cancel appointment'],
+        'next_state':    'manage_appointment',
+        'manage_action': 'modify',
+    },
+    '❌ Cancel appointment': {
+        'reply':         'Are you sure you want to cancel your appointment?',
+        'quick_replies': ['✅ Yes, cancel my appointment', '⬅️ No, go back'],
+        'next_state':    'manage_appointment',
+        'manage_action': 'cancel',
+    },
+    '⬅️ No, go back': {
+        'reply':         'What would you like to do?',
+        'quick_replies': ['📅 Modify existing appointment', '➕ Book new appointment'],
+        'next_state':    'manage_appointment',
+        'manage_action': '',
+    },
+}
+
 
 def _get_client():
     global _client
@@ -157,22 +178,19 @@ def _reschedule_appointment(conversation, context_updates):
     return appt_ref
 
 
-def _cancel_appointment(conversation, context_updates):
+def _cancel_appointment(conversation):
     """Mark existing appointment cancelled, free slot. Returns True on success."""
-    if not context_updates.get('cancel_appointment'):
-        return False
-
     from .models import Appointment
 
-    old_appt_id = conversation.context.get('existing_appointment', {}).get('id')
-    if not old_appt_id:
+    appt_id = conversation.context.get('existing_appointment', {}).get('id')
+    if not appt_id:
         logger.error("Cancel: no existing_appointment in context.")
         return False
 
     try:
-        appt = Appointment.objects.select_related('slot').get(pk=old_appt_id)
+        appt = Appointment.objects.select_related('slot').get(pk=appt_id)
     except Appointment.DoesNotExist:
-        logger.error("Cancel: appointment %s not found.", old_appt_id)
+        logger.error("Cancel: appointment %s not found.", appt_id)
         return False
 
     appt.slot.is_booked = False
@@ -180,6 +198,7 @@ def _cancel_appointment(conversation, context_updates):
     appt.status = 'cancelled'
     appt.save(update_fields=['status'])
 
+    conversation.context['appointment_cancelled'] = True
     conversation.context.pop('existing_appointment', None)
     conversation.save(update_fields=['context'])
     logger.info("Appointment #%s cancelled.", appt.pk)
@@ -187,14 +206,7 @@ def _cancel_appointment(conversation, context_updates):
 
 
 def _get_manage_appointment_quick_replies(conversation):
-    """Return context-aware quick replies for the manage_appointment state."""
-    sub = conversation.context.get('manage_sub_state', '')
-    if sub == 'modify':
-        return ["🔄 Reschedule", "❌ Cancel appointment"]
-    if sub == 'reschedule':
-        return []
-    if sub == 'cancel':
-        return ["✅ Yes, cancel my appointment", "⬅️ No, go back"]
+    """Initial manage_appointment options — shown after Claude displays appointment details."""
     return ["📅 Modify existing appointment", "➕ Book new appointment"]
 
 
@@ -202,6 +214,10 @@ def _get_identify_quick_replies(conversation):
     """Return context-aware quick replies for the identify state."""
     if conversation.context.get('patient_not_found'):
         return ["✅ Yes, register as new patient", "🔄 Try a different number"]
+    if (conversation.context.get('patient_type') == 'existing'
+            and conversation.context.get('patient_name')
+            and not conversation.context.get('patient_identified')):
+        return []  # Waiting for name confirmation — no buttons
     return ["I'm a new patient", "I'm an existing patient"]
 
 
@@ -328,6 +344,73 @@ def handle_message(conversation, user_message_text):
             conversation.context.pop('patient_not_found', None)
             conversation.save(update_fields=['context'])
 
+    # Short-circuit known manage_appointment button clicks before calling Claude
+    if conversation.state == 'manage_appointment':
+        msg = user_message_text.strip()
+
+        # Static responses — no Claude needed
+        if msg in BUTTON_RESPONSES:
+            r = BUTTON_RESPONSES[msg]
+            conversation.context['manage_action'] = r['manage_action']
+            conversation.save(update_fields=['context'])
+            Message.objects.create(conversation=conversation, role='assistant', content=r['reply'])
+            return r['reply'], r['next_state'], False, r['quick_replies'], None
+
+        # Reschedule — free old slot, route to booking for new slot selection
+        if msg == '🔄 Reschedule':
+            old_appt_id = conversation.context.get('existing_appointment', {}).get('id')
+            if old_appt_id:
+                from .models import Appointment as _Appt
+                try:
+                    old = _Appt.objects.select_related('slot').get(pk=old_appt_id)
+                    old.status = 'rescheduled'
+                    old.save(update_fields=['status'])
+                    old.slot.is_booked = False
+                    old.slot.save(update_fields=['is_booked'])
+                    logger.info("Appointment #%s marked rescheduled, slot freed.", old_appt_id)
+                except _Appt.DoesNotExist:
+                    logger.error("Reschedule: appointment #%s not found.", old_appt_id)
+            conversation.state = 'booking'
+            conversation.context['manage_action'] = 'reschedule'
+            conversation.save(update_fields=['state', 'context'])
+            # Fall through to Claude with booking state and available slots
+
+        elif msg == '✅ Yes, cancel my appointment':
+            appt_id = conversation.context.get('existing_appointment', {}).get('id')
+            ref = 'your appointment'
+            if appt_id:
+                from .models import Appointment as _Appt
+                try:
+                    appt = _Appt.objects.select_related('slot').get(pk=appt_id)
+                    appt.status = 'cancelled'
+                    appt.save(update_fields=['status'])
+                    appt.slot.is_booked = False
+                    appt.slot.save(update_fields=['is_booked'])
+                    ref = f'KH{appt.pk:05d}'
+                    conversation.context.pop('existing_appointment', None)
+                    conversation.context['appointment_cancelled'] = True
+                    conversation.save(update_fields=['context'])
+                    logger.info("Appointment #%s cancelled.", appt_id)
+                except _Appt.DoesNotExist:
+                    logger.error("Cancel: appointment #%s not found.", appt_id)
+            conversation.state = 'done'
+            conversation.save(update_fields=['state'])
+            reply = (
+                f"Your appointment {ref} has been successfully cancelled. "
+                f"We hope to see you again at Kauvery Hospital. "
+                f"Is there anything else I can help you with?"
+            )
+            Message.objects.create(conversation=conversation, role='assistant', content=reply)
+            return reply, 'done', False, [], None
+
+        elif msg == '➕ Book new appointment':
+            conversation.state = 'emergency_check'
+            conversation.context.pop('existing_appointment', None)
+            conversation.context.pop('manage_action', None)
+            conversation.context.pop('existing_appt_checked', None)
+            conversation.save(update_fields=['state', 'context'])
+            # Fall through to Claude with emergency_check state
+
     # Build context to inject into system prompt
     if conversation.state in ('symptoms', 'triage'):
         rag_context = query_rag(user_message_text)
@@ -372,23 +455,34 @@ def handle_message(conversation, user_message_text):
     if isinstance(context_updates, dict) and context_updates:
         conversation.context.update(context_updates)
 
-    # Intercept identify → emergency_check: check for existing future appointments
-    if prev_state == 'identify' and next_state == 'emergency_check':
+    # Check for existing appointment ONLY after patient confirms identity (patient_identified=True).
+    # Requires patient_type='existing' and runs at most once per conversation.
+    if (prev_state == 'identify' and
+            conversation.context.get('patient_identified') and
+            conversation.context.get('patient_type') == 'existing' and
+            'existing_appt_checked' not in conversation.context):
+
         patient_mobile = conversation.context.get('patient_mobile')
-        if patient_mobile:
-            existing_appt = _check_existing_appointment(patient_mobile)
-            if existing_appt:
-                conversation.context['existing_appointment'] = {
-                    'id':         existing_appt.pk,
-                    'ref':        f"KH{existing_appt.pk:05d}",
-                    'doctor':     f"Dr. {existing_appt.doctor.name}",
-                    'department': existing_appt.doctor.department.name,
-                    'date':       existing_appt.slot.date.strftime('%d %b %Y'),
-                    'time':       existing_appt.slot.time.strftime('%I:%M %p').lstrip('0'),
-                }
-                next_state = 'manage_appointment'
-                conversation.state = 'manage_appointment'
-                logger.info("Existing appointment found — routing to manage_appointment.")
+        existing_appt = _check_existing_appointment(patient_mobile)
+        conversation.context['existing_appt_checked'] = True
+
+        if existing_appt:
+            conversation.context['existing_appointment'] = {
+                'id':         existing_appt.pk,
+                'ref':        f"KH{existing_appt.pk:05d}",
+                'doctor':     existing_appt.doctor.name,
+                'department': existing_appt.doctor.department.name,
+                'date':       str(existing_appt.slot.date),
+                'time':       str(existing_appt.slot.time),
+            }
+            conversation.state = 'manage_appointment'
+            next_state = 'manage_appointment'
+            conversation.save(update_fields=['context', 'state'])
+            logger.info("Existing appointment found — routing to manage_appointment.")
+        else:
+            conversation.state = 'emergency_check'
+            next_state = 'emergency_check'
+            conversation.save(update_fields=['context', 'state'])
 
     conversation.save(update_fields=['state', 'context'])
 
@@ -404,7 +498,7 @@ def handle_message(conversation, user_message_text):
         if 'reschedule_slot_id' in context_updates:
             reschedule_ref = _reschedule_appointment(conversation, context_updates)
         elif context_updates.get('cancel_appointment'):
-            cancelled = _cancel_appointment(conversation, context_updates)
+            cancelled = _cancel_appointment(conversation)
 
     # Resolve emergency doctor when emergency is confirmed and moving to booking
     emergency_doctor = None

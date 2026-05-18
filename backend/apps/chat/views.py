@@ -29,7 +29,7 @@ class SendMessageView(APIView):
 
         reply, state, is_emergency, quick_replies, emergency_doctor = handle_message(conversation, user_message)
 
-        sub_state = conversation.context.get('manage_sub_state', '') if state == 'manage_appointment' else ''
+        sub_state = conversation.context.get('manage_action', '') if state == 'manage_appointment' else ''
 
         return Response({
             'session_token': str(conversation.session_token),
