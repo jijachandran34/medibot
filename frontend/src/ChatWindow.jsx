@@ -76,6 +76,10 @@ function renderLines(text, keyOffset = 0) {
       return <div key={keyOffset + i} style={{ paddingLeft: '16px', margin: '2px 0' }}>{line}</div>
     if (line.toLowerCase().includes('appointment reference number'))
       return <div key={keyOffset + i} style={{ fontWeight: 'bold', fontSize: '1rem', marginTop: '8px', color: '#0066CC' }}>{line}</div>
+    if (/^\d+\. Dr\./.test(line))
+      return <div key={keyOffset + i} style={{ fontWeight: 'bold', fontSize: '0.9rem', marginTop: '8px', color: '#0066CC' }}>{line}</div>
+    if (/^\s+📅/.test(line))
+      return <div key={keyOffset + i} style={{ fontSize: '0.85rem', color: '#555', paddingLeft: '16px' }}>{line.trim()}</div>
     if (line.trim() === '')
       return <div key={keyOffset + i} style={{ height: '6px' }} />
     return <div key={keyOffset + i}>{line}</div>
@@ -396,47 +400,27 @@ export default function ChatWindow({ onClose, onBotMessage }) {
       </div>
 
       {/* Quick replies */}
-      {quickReplies.length > 0 && (() => {
-        const slotReplies   = quickReplies.filter(qr => qr.startsWith('Dr.'))
-        const normalReplies = quickReplies.filter(qr => !qr.startsWith('Dr.'))
-        return (
-          <div style={{ borderTop: '1px solid #eee', flexShrink: 0 }}>
-            {slotReplies.length > 0 && (
-              <div style={{ padding: '8px 12px' }}>
-                {slotReplies.map(qr => (
-                  <button
-                    key={qr}
-                    className="slot-reply-btn"
-                    disabled={loading}
-                    onClick={() => handleQuickReply(qr)}
-                  >{qr}</button>
-                ))}
-              </div>
-            )}
-            {normalReplies.length > 0 && (
-              <div style={{ padding: '8px 12px', display: 'flex', gap: 8, overflowX: 'auto' }}>
-                {normalReplies.map(qr => {
-                  const isEmergency = qr.startsWith('🚨')
-                  const isSafe      = qr.startsWith('✅')
-                  return (
-                    <button
-                      key={qr}
-                      className="quick-reply-btn"
-                      disabled={loading}
-                      onClick={() => handleQuickReply(qr)}
-                      style={
-                        isEmergency ? { background: '#dc2626', color: '#fff', borderColor: '#dc2626' } :
-                        isSafe      ? { background: '#16a34a', color: '#fff', borderColor: '#16a34a' } :
-                        undefined
-                      }
-                    >{qr}</button>
-                  )
-                })}
-              </div>
-            )}
-          </div>
-        )
-      })()}
+      {quickReplies.length > 0 && (
+        <div style={{ borderTop: '1px solid #eee', flexShrink: 0, padding: '8px 12px', display: 'flex', gap: 8, overflowX: 'auto' }}>
+          {quickReplies.map(qr => {
+            const isEmergency = qr.startsWith('🚨')
+            const isSafe      = qr.startsWith('✅')
+            return (
+              <button
+                key={qr}
+                className="quick-reply-btn"
+                disabled={loading}
+                onClick={() => handleQuickReply(qr)}
+                style={
+                  isEmergency ? { background: '#dc2626', color: '#fff', borderColor: '#dc2626' } :
+                  isSafe      ? { background: '#16a34a', color: '#fff', borderColor: '#16a34a' } :
+                  undefined
+                }
+              >{qr}</button>
+            )
+          })}
+        </div>
+      )}
 
       {/* Input */}
       <div style={{ padding: '10px 12px', borderTop: '1px solid #eee', display: 'flex', gap: 8, flexShrink: 0 }}>
