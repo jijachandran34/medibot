@@ -44,43 +44,30 @@ def _clean_response(text):
 
 
 def _get_available_slots_text():
-    """Format all unbooked slots grouped by doctor for injection into the booking prompt."""
-    from apps.doctors.models import Doctor
+    """Format future unbooked slots as a numbered list with SLOT_IDs for Claude to reference."""
+    from datetime import date
+    from apps.doctors.models import Slot
 
-    doctors = (
-        Doctor.objects
-        .select_related('department')
-        .prefetch_related('slots')
-        .filter(slots__is_booked=False)
-        .distinct()
-        .order_by('department__name', 'name')
+    slots = (
+        Slot.objects
+        .filter(is_booked=False, date__gte=date.today())
+        .select_related('doctor__department')
+        .order_by('date', 'time')
     )
 
-    lines = ["Available doctors and slots:"]
-    for doctor in doctors:
-        available = doctor.slots.filter(is_booked=False).order_by('date', 'time')
-        if available.exists():
-            lines.append(f"\nDr. {doctor.name} (Doctor ID: {doctor.pk}, {doctor.department.name}, {doctor.qualification})")
-            for slot in available:
-                lines.append(f"  - Slot ID {slot.pk}: {slot.date} at {slot.time.strftime('%H:%M')}")
+    lines = ["Available slots (present as a numbered list to the patient):"]
+    for i, slot in enumerate(slots, 1):
+        lines.append(
+            f"{i}. Dr. {slot.doctor.name} — {slot.doctor.department.name}\n"
+            f"   📅 {slot.date.strftime('%d %b %Y')} at {slot.time.strftime('%I:%M %p').lstrip('0')}\n"
+            f"   [SLOT_ID:{slot.pk}]"
+        )
 
     return "\n".join(lines)
 
 
 def _get_booking_quick_replies():
-    """Return tappable slot buttons for the booking state."""
-    from apps.doctors.models import Slot
-    slots = (
-        Slot.objects
-        .filter(is_booked=False)
-        .select_related('doctor')
-        .order_by('date', 'time')
-    )
-    replies = []
-    for slot in slots:
-        label = f"Dr. {slot.doctor.name} — {slot.date.strftime('%d %b')}, {slot.time.strftime('%I:%M %p').lstrip('0')}"
-        replies.append(label)
-    return replies
+    return []
 
 
 def _get_emergency_doctor():
@@ -205,7 +192,7 @@ def _get_manage_appointment_quick_replies(conversation):
     if sub == 'modify':
         return ["🔄 Reschedule", "❌ Cancel appointment"]
     if sub == 'reschedule':
-        return _get_booking_quick_replies()
+        return []
     if sub == 'cancel':
         return ["✅ Yes, cancel my appointment", "⬅️ No, go back"]
     return ["📅 Modify existing appointment", "➕ Book new appointment"]

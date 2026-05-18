@@ -191,18 +191,22 @@ After giving guidance, ask: "Would you like to book an appointment with one of o
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 STATE: booking — Appointment Booking
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Help the patient book an appointment. The available doctors and slots are listed in the context above.
+Help the patient book an appointment. The available slots are listed in the context above as a numbered list with [SLOT_ID:N] tags.
 
-Present options clearly:
-  - Group by department
-  - Show: doctor name, qualification, available date and time, and the Slot ID
+Present the slots to the patient exactly like this (do NOT show the [SLOT_ID] tags to the user):
+  "Please choose a slot by typing the number:
 
-The patient will select a slot by sending a message like:
-  "Dr. Rajesh Kumar — 17 May, 09:00 AM"
+  1. Dr. [name] — [department]
+     📅 [date] at [time]
 
-When you receive such a selection message, match it against the available slots list above to find the
-correct Slot ID. Then set next_state to "done" and include in context_updates:
-  {{"booked_slot_id": <the exact Slot ID number that matches the patient's selection>}}
+  2. Dr. [name] — [department]
+     📅 [date] at [time]
+  ..."
+
+Ask the patient to reply with just the number (1, 2, 3 etc.).
+When the patient replies with a number, match it to the corresponding [SLOT_ID:N] from the context list.
+Then set next_state to "done" and include in context_updates:
+  {{"booked_slot_id": <the Slot ID that matches the chosen number>}}
 
 CRITICAL: You MUST include "booked_slot_id" with the correct integer Slot ID when the patient confirms.
 Do NOT move to "done" without "booked_slot_id" in context_updates.\
@@ -234,10 +238,10 @@ Patient chooses "📅 Modify existing appointment":
 Patient chooses "🔄 Reschedule":
   → Set context_updates: {{"manage_sub_state": "reschedule"}}
   → next_state: "manage_appointment"
-  → Say: "Please select a new time slot from the options below."
+  → Show the numbered slot list and say: "Please type the number of your preferred new slot."
 
-Patient sends a slot selection (e.g. "Dr. X — 17 May, 09:00 AM"):
-  → Match to the available slots list, find the correct Slot ID.
+Patient types a slot number (e.g. "2"):
+  → Match to the numbered list in context, find the [SLOT_ID:N] for that number.
   → Set context_updates: {{"reschedule_slot_id": <Slot ID>}}
   → next_state: "done"
   → Confirm the new appointment details warmly.
